@@ -1,0 +1,200 @@
+<script lang="ts">
+	import PokeType from '$lib/poke-type.svelte';
+	import { fade } from 'svelte/transition';
+
+	export let data;
+</script>
+
+<div class="page">
+	<header class="header">
+		<h1>Página búsqueda</h1>
+		<form method="get" action="/pokemon/list">
+			<input
+				type="text"
+				name="search"
+				placeholder="Buscar Pokémon..."
+				value={data.search.name ?? ''}
+			/>
+			<button type="submit">Buscar</button>
+		</form>
+	</header>
+
+	<section class="poke-list-container">
+		<ul class="list">
+			{#each data.pokemons.list as poke}
+				<li class="poke-card" class:shiny={poke.is_shiny} in:fade>
+					<a href={`/pokemon/${poke.id}`}>
+						<img src={poke.image} class="poke-image normal" alt={poke.name} />
+						<img
+							src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/{poke.id}.png"
+							class="poke-image shiny"
+							alt={poke.name}
+						/>
+						<p>{poke.name}</p>
+
+						<div class="types">
+							{#each poke.types as type}
+								<PokeType type={type.slug} text={type.name} />
+							{/each}
+						</div>
+					</a>
+				</li>
+			{/each}
+		</ul>
+	</section>
+</div>
+
+<style>
+	.page {
+		padding: 15px 20px;
+	}
+	.page header.header {
+		margin: 0 -20px;
+		margin-top: -15px;
+		padding: 15px;
+		background-color: #efefef;
+		border-radius: 8px;
+	}
+	.page header.header form {
+		display: flex;
+	}
+	.page header.header form input {
+		flex: 1;
+		width: 100%;
+		padding: 8px;
+		font-size: 1rem;
+		border: 1px solid #ccc;
+		background-color: #fff;
+		border-radius: 8px 0 0 8px;
+		height: 40px;
+		outline: none;
+		border-right: none;
+	}
+	.page header.header form button {
+		display: block;
+		background-color: #fff;
+		color: #333;
+		border: 1px solid #ccc;
+		border-radius: 0 8px 8px 0;
+		height: 40px;
+		cursor: pointer;
+		outline: none;
+		padding: 0 15px;
+	}
+	.page header.header h1 {
+		margin: 0 0 10px 0;
+		font-size: 1.5rem;
+		color: #333;
+		padding: 5px;
+	}
+	.list {
+		list-style: none;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 15px;
+		padding: 20px 10px;
+		margin: 0;
+	}
+	.poke-card {
+		background: #f8f8f8;
+		border-radius: 10px;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+		text-align: center;
+		transition: transform 0.2s;
+	}
+	.poke-card a {
+		padding: 10px;
+		margin: 0;
+	}
+	.poke-card:hover {
+		transform: translateY(-5px);
+	}
+	.poke-card img {
+		width: 100px;
+		height: 100px;
+		object-fit: contain;
+	}
+	.poke-card img.shiny {
+		display: none;
+	}
+	.poke-card.shiny img.shiny {
+		display: inline;
+	}
+	.poke-card.shiny img.normal {
+		display: none;
+	}
+	.poke-card p {
+		margin: 10px 0 0;
+		font-weight: bold;
+		text-transform: capitalize;
+		color: #333;
+	}
+
+	.poke-card .types {
+		margin-top: 10px;
+		display: flex;
+		justify-content: center;
+		gap: 6px;
+	}
+	.type {
+		color: #fff;
+		padding: 4px 8px;
+		border-radius: 12px;
+		font-size: 0.75rem;
+		text-transform: capitalize;
+	}
+	.type.type-normal {
+		background-color: #a8a77a;
+	}
+	.type.type-fire {
+		background-color: #ee8130;
+	}
+	.type.type-water {
+		background-color: #6390f0;
+	}
+	.type.type-electric {
+		background-color: #f7d02c;
+	}
+	.type.type-grass {
+		background-color: #7ac74c;
+	}
+	.type.type-ice {
+		background-color: #96d9d6;
+	}
+	.type.type-fighting {
+		background-color: #c22e28;
+	}
+	.type.type-poison {
+		background-color: #a33ea1;
+	}
+	.type.type-ground {
+		background-color: #e2bf65;
+	}
+	.type.type-flying {
+		background-color: #a98ff3;
+	}
+	.type.type-psychic {
+		background-color: #f95587;
+	}
+	.type.type-bug {
+		background-color: #a6b91a;
+	}
+	.type.type-rock {
+		background-color: #b6a136;
+	}
+	.type.type-ghost {
+		background-color: #735797;
+	}
+	.type.type-dragon {
+		background-color: #6f35fc;
+	}
+	.type.type-dark {
+		background-color: #705746;
+	}
+	.type.type-steel {
+		background-color: #b7b7ce;
+	}
+	.type.type-fairy {
+		background-color: #d685ad;
+	}
+</style>
