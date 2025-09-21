@@ -1,6 +1,7 @@
 import { LocalPokemon } from '$lib/services/local.pokemon.service.js';
 
 export const load = async ({ url }) => {
+    const p: string = '';
     const POKEMON_PER_PAGE = 20;
 	const searchName = url.searchParams.get('search')?.toLowerCase().trim();
 	const baseList = searchName

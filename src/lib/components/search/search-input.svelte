@@ -1,21 +1,15 @@
 <script lang="ts">
-	type Poke = {
-		id: number;
-		name: string;
-		image: string;
-	};
-	let filtered: Poke[] = [];
+	let filtered: any = [];
 	import pokemons from '$lib/data/pokemon.json';
 
 	const handleInput = (event: Event) => {
 		const input = event.target as HTMLInputElement;
 		const value = input.value.toLowerCase().trim();
-		if (value.length === 0 || value.length < 4) {
-			return;
-		}
+		if (value.length === 0 || value.length < 4) return;
+        
 		filtered = pokemons.filter((pokemon) =>
 			pokemon.name.startsWith(value)
-		).slice(0, 5) as Poke[];
+		).slice(0, 5) as any[];
 	};
 </script>
 

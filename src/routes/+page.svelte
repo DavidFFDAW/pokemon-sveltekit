@@ -1,5 +1,6 @@
-<script>
-	import SearchInput from "$lib/components/search/search-input.svelte";
+<script lang="ts">
+	import SearchInput from '$lib/components/search/search-input.svelte';
+
 	export let data;
 </script>
 
@@ -7,25 +8,25 @@
 	<div class="poke-animated-container">
 		<img
 			class="charizard-animation"
-			src="{data.random_pokemon.image}"
-			alt="{data.random_pokemon.name}"
+			src={data.random_pokemon.image}
+			alt={data.random_pokemon.name}
 			draggable="false"
 			loading="lazy"
 		/>
 	</div>
 
 	<div class="poke-home-content">
-			<h1 class="tcenter">¡Bienvenido a la Pokedex!</h1>
-			<p class="tcenter">
-				Haz una búsqueda o pulsa sobre uno de los enlaces para ver informaciones.
-			</p>
+        <h1 class="tcenter">¡Bienvenido a la Pokedex!</h1>
+        <p class="tcenter">
+            Haz una búsqueda o pulsa sobre uno de los enlaces para ver informaciones.
+        </p>
 
-			<SearchInput />
+        <SearchInput />
 
-			<div class="poke-home-actions">
-				<a href="/pokemon/types" class="poke-button tcenter">Ver tipos</a>
-				<a href="/pokemon/moves" class="poke-button tcenter">Ver movimientos</a>
-			</div>
+        <div class="poke-home-actions">
+            <a href="/pokemon/types" class="poke-button tcenter">Ver tipos</a>
+            <a href="/pokemon/moves" class="poke-button tcenter">Ver movimientos</a>
+        </div>
 	</div>
 </div>
 

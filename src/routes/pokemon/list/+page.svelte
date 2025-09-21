@@ -6,6 +6,7 @@
 </script>
 
 <div class="page">
+    <a href="/test">Test</a>
 	<header class="header">
 		<h1>Página búsqueda</h1>
 		<form method="get" action="/pokemon/list">
@@ -135,66 +136,5 @@
 		display: flex;
 		justify-content: center;
 		gap: 6px;
-	}
-	.type {
-		color: #fff;
-		padding: 4px 8px;
-		border-radius: 12px;
-		font-size: 0.75rem;
-		text-transform: capitalize;
-	}
-	.type.type-normal {
-		background-color: #a8a77a;
-	}
-	.type.type-fire {
-		background-color: #ee8130;
-	}
-	.type.type-water {
-		background-color: #6390f0;
-	}
-	.type.type-electric {
-		background-color: #f7d02c;
-	}
-	.type.type-grass {
-		background-color: #7ac74c;
-	}
-	.type.type-ice {
-		background-color: #96d9d6;
-	}
-	.type.type-fighting {
-		background-color: #c22e28;
-	}
-	.type.type-poison {
-		background-color: #a33ea1;
-	}
-	.type.type-ground {
-		background-color: #e2bf65;
-	}
-	.type.type-flying {
-		background-color: #a98ff3;
-	}
-	.type.type-psychic {
-		background-color: #f95587;
-	}
-	.type.type-bug {
-		background-color: #a6b91a;
-	}
-	.type.type-rock {
-		background-color: #b6a136;
-	}
-	.type.type-ghost {
-		background-color: #735797;
-	}
-	.type.type-dragon {
-		background-color: #6f35fc;
-	}
-	.type.type-dark {
-		background-color: #705746;
-	}
-	.type.type-steel {
-		background-color: #b7b7ce;
-	}
-	.type.type-fairy {
-		background-color: #d685ad;
 	}
 </style>
