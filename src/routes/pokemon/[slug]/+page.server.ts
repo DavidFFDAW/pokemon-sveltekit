@@ -1,6 +1,5 @@
 import { PokeTypes } from '$lib/constant/types.js';
 import type { ApiPokemonResponse } from '$lib/types/api-types.js';
-import type { PokeStats } from '$lib/types/types.js';
 import { getShinyProbability } from '$lib/utils/general.utils.js';
 import { getParsedPokemonMovePool } from '$lib/utils/moves.utils.js';
 import { getTypeEffectiveness } from '$lib/utils/types.utils.js';

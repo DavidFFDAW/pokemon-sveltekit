@@ -53,5 +53,5 @@ export const getParsedPokemonMovePool = (pokemonMovePool: ApiPokeMoves[]) => {
 			)
 	);
 
-	return { versions, parsedMovePool };
+	return { versions, moves: parsedMovePool };
 };
