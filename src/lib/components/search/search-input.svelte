@@ -5,17 +5,19 @@
 	const handleInput = (event: Event) => {
 		const input = event.target as HTMLInputElement;
 		const value = input.value.toLowerCase().trim();
-		if (value.length === 0 || value.length < 4) return;
-        
-		filtered = pokemons.filter((pokemon) =>
-			pokemon.name.startsWith(value)
-		).slice(0, 5) as any[];
+		if (value.length === 0 || value.length < 3) return;
+
+		filtered = pokemons.filter((pokemon) => pokemon.name.startsWith(value)).slice(0, 5) as any[];
 	};
 </script>
 
 <form action="/pokemon/list" method="get">
 	<div class="search-input-container form-item">
-		<label class="input-with-button" aria-label="Search Pokémon" class:suggestions={filtered.length > 0}>
+		<label
+			class="input-with-button"
+			aria-label="Search Pokémon"
+			class:suggestions={filtered.length > 0}
+		>
 			<div class="input-container relative">
 				<input
 					type="search"
@@ -31,12 +33,7 @@
 						{#each filtered as pokemon}
 							<div class="suggestion-item">
 								<a href={`/pokemon/${pokemon.id}`}>
-									<img
-										src={pokemon.image}
-										alt={pokemon.name}
-										loading="lazy"
-										draggable="false"
-									/>
+									<img src={pokemon.image} alt={pokemon.name} loading="lazy" draggable="false" />
 									<span class="suggestion-name">{pokemon.name}</span>
 								</a>
 							</div>
@@ -139,5 +136,4 @@
 		text-transform: capitalize;
 		font-weight: 500;
 	}
-
 </style>

@@ -13,61 +13,64 @@
 }
 
 :root {
-	--red: #e64d4d;
-	--pokemon-page-type-bg: #e64d4d;
+    --red: #e64d4d;
+    --pokemon-page-type-bg: #e64d4d;
 }
 
 *,
 *::before,
 *::after {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html, body {
-	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 0;
-	overflow-x: hidden;
+html,
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 img {
-	max-width: 100%;
-	object-fit: cover;
+    max-width: 100%;
+    object-fit: cover;
 }
 
 h1 {
-	text-align: center;
-	margin: 0;
-	padding: 20px;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
 }
 
 ul {
-	list-style: none;
-	display: flex;
-	flex-direction: column;
-	padding: 0;
-	gap: 6px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 6px;
 }
+
 ul.column {
-	flex-direction: column;
+    flex-direction: column;
 }
+
 ul.row {
-	flex-direction: row;
+    flex-direction: row;
 }
 
 li {
-	margin: 0 5px;
+    margin: 0 5px;
 }
 
 a {
-	text-decoration: none;
-	color: #000;
+    text-decoration: none;
+    color: #000;
 }
 
 h2 {
-	text-align: center;
+    text-align: center;
 }
 
 button.unbutton {
@@ -76,11 +79,13 @@ button.unbutton {
 }
 
 .uppercase {
-	text-transform: uppercase;
+    text-transform: uppercase;
 }
+
 .capitalize {
-	text-transform: capitalize;
+    text-transform: capitalize;
 }
+
 .violet {
     font-family: "violet";
 }
@@ -89,154 +94,195 @@ button.unbutton {
     font-family: "avenir";
 }
 
+label.app-radio.radio-item {
+    position: relative;
+}
+
+label.app-radio.radio-item input[type="radio"],
+label.app-radio.radio-item input[type="checkbox"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    z-index: 2;
+    cursor: pointer;
+}
+
+label.app-radio.radio-item input[type="radio"]+.inner,
+label.app-radio.radio-item input[type="checkbox"]+.inner {
+    text-align: center;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+}
+
+label.app-radio.radio-item input[type="radio"]:checked+.inner,
+label.app-radio.radio-item input[type="checkbox"]:checked+.inner {
+    background-color: var(--red);
+    color: #fff;
+    border-color: #000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+
 .type {
-	display: inline-block;
-	padding: 5px;
-	border-radius: 5px;
-	color: #fff;
-	font-size: 12px;
-	/* text-transform: uppercase; */
+    display: inline-block;
+    padding: 5px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 12px;
+    /* text-transform: uppercase; */
 }
 
 .poke-type.type {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 5px 15px;
-	border-radius: 14px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-	overflow: hidden;
-	gap: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 15px;
+    border-radius: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    gap: 5px;
 }
+
 .poke-type.type img.type-icon {
-	width: 14px;
-	height: auto;
-	object-fit: cover;
+    width: 14px;
+    height: auto;
+    object-fit: cover;
 }
+
 .poke-type.type span {
-	display: block;
-	font-weight: 600;
-	font-family: 'violet', sans-serif;
+    display: block;
+    font-weight: 600;
+    font-family: 'violet', sans-serif;
 }
 
 .type.normal {
-	color: #fff;
-	background-color: rgb(159, 161, 159);
+    color: #fff;
+    background-color: rgb(159, 161, 159);
 }
 
 .type.fire,
 .type.fuego {
-	color: #fff;
-	background-color: rgb(230, 40, 41);
+    color: #fff;
+    background-color: rgb(230, 40, 41);
 }
 
 .type.fighting,
 .type.lucha {
-	color: #fff;
-	background-color: rgb(255, 128, 0);
+    color: #fff;
+    background-color: rgb(255, 128, 0);
 }
 
 .type.water,
 .type.agua {
-	color: #fff;
-	background-color: rgb(41, 128, 239);
+    color: #fff;
+    background-color: rgb(41, 128, 239);
 }
 
 .type.flying,
 .type.volador {
-	color: #fff;
-	background-color: rgb(129, 185, 239);
+    color: #fff;
+    background-color: rgb(129, 185, 239);
 }
 
 .type.grass,
 .type.planta {
-	color: #fff;
-	background-color: rgb(63, 161, 41);
+    color: #fff;
+    background-color: rgb(63, 161, 41);
 }
 
 .type.poison,
 .type.veneno {
-	color: #fff;
-	background-color: rgb(145, 65, 203);
+    color: #fff;
+    background-color: rgb(145, 65, 203);
 }
 
 .type.electric,
 .type.eléctrico {
-	color: #fff;
-	background-color: rgb(250, 192, 0);
+    color: #fff;
+    background-color: rgb(250, 192, 0);
 }
 
 .type.ground,
 .type.tierra {
-	color: #fff;
-	background-color: rgb(145, 81, 33);
+    color: #fff;
+    background-color: rgb(145, 81, 33);
 }
 
 .type.psychic,
 .type.psíquico {
-	color: #fff;
-	background-color: rgb(239, 65, 121);
+    color: #fff;
+    background-color: rgb(239, 65, 121);
 }
 
 .type.rock,
 .type.roca {
-	color: #fff;
-	background-color: rgb(175, 169, 129);
+    color: #fff;
+    background-color: rgb(175, 169, 129);
 }
 
 .type.ice,
 .type.hielo {
-	color: #fff;
-	background-color: rgb(61, 206, 243);
+    color: #fff;
+    background-color: rgb(61, 206, 243);
 }
 
 .type.bug,
 .type.bicho {
-	color: #fff;
-	background-color: rgb(145, 161, 25);
+    color: #fff;
+    background-color: rgb(145, 161, 25);
 }
 
 .type.dragon,
 .type.dragón {
-	color: #fff;
-	background-color: rgb(80, 96, 225);
+    color: #fff;
+    background-color: rgb(80, 96, 225);
 }
 
 .type.ghost,
 .type.fantasma {
-	color: #fff;
-	background-color: rgb(112, 65, 112);
+    color: #fff;
+    background-color: rgb(112, 65, 112);
 }
 
 .type.dark,
 .type.siniestro {
-	color: #fff;
-	background-color: rgb(98, 77, 78);
+    color: #fff;
+    background-color: rgb(98, 77, 78);
 }
 
 .type.steel,
 .type.acero {
-	color: #fff;
-	background-color: rgb(96, 161, 184);
+    color: #fff;
+    background-color: rgb(96, 161, 184);
 }
 
 .type.fairy,
 .type.hada {
-	color: #fff;
-	background-color: rgb(239, 112, 239);
+    color: #fff;
+    background-color: rgb(239, 112, 239);
 }
 
 .type.stellar,
 .type.estelar {
-	color: #fff;
-	background-color: rgb(64, 181, 165);
+    color: #fff;
+    background-color: rgb(64, 181, 165);
 }
 
 .poke-image.shiny {
-	background-image: url('https://www.citypng.com/public/uploads/preview/hd-yellow-shining-sparkling-stars-png-701751694687505cylpszfneb.png?v=2025072919');
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
+    background-image: url('https://www.citypng.com/public/uploads/preview/hd-yellow-shining-sparkling-stars-png-701751694687505cylpszfneb.png?v=2025072919');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .fancy-scrollbar::-webkit-scrollbar {

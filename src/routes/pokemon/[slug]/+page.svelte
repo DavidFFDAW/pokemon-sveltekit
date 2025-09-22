@@ -19,7 +19,7 @@
 </script>
 
 <div
-	class="pokemon-wrapper pokemon-single-page pokemon-page type-{data.types[0].slug}"
+	class="pokemon-wrapper pokemon-single-page pokemon-page type-{data.types[0].slug} light-theme"
 	class:shiny={data.shiny}
 >
 	<div class="pokemon-page-search-container">
@@ -32,13 +32,25 @@
 
 	{#if data.pokemon}
 		<div class="pokemon-datas-wrapper">
+			<button
+				type="button"
+				class="shiny-button"
+				class:shiny={data.shiny}
+				on:click={() => (data.shiny = !data.shiny)}
+			>
+				<span>✨</span>
+			</button>
 			<div class="pokemon-main-datas">
 				<img
+					title="{data.pokemon.name} normal"
+					draggable="false"
 					class="poke-main-image normal-image"
 					src={data.pokemon.sprites.other.home.front_default}
 					alt={data.pokemon.name}
 				/>
 				<img
+					title="{data.pokemon.name} shiny"
+					draggable="false"
 					class="poke-main-image shiny-image"
 					src={data.pokemon.sprites.other.home.front_shiny}
 					alt="{data.pokemon.name} shiny"
@@ -55,7 +67,7 @@
 						<PokeType type={type.slug} text={type.name} />
 					{/each}
 				</div>
-				
+
 				<button type="button" class="pokemon-cry-button" on:click={handlePlayCry}>
 					<audio src={data.pokemon.cries.latest} class="poke-cry-audio-tag" autoplay></audio>
 					<span class="poke-cry-text">¡Escuchar!</span>
@@ -154,6 +166,24 @@
 	}
 	.pokemon-wrapper.pokemon-single-page.pokemon-page.type-steel {
 		--pokemon-page-type-bg: #b8b8d0;
+	}
+	.pokemon-wrapper.pokemon-single-page.pokemon-page .shiny-button {
+		position: absolute;
+		top: -25px;
+		left: 50%;
+		transform: translateX(-50%);
+		background-color: #fff;
+		border: none;
+		border-radius: 50%;
+		padding: 12px;
+		cursor: pointer;
+		font-weight: 600;
+		font-size: 1.2rem;
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+		z-index: 5;
+	}
+	.pokemon-wrapper.pokemon-single-page.pokemon-page .shiny-button.shiny {
+		background-color: var(--red);
 	}
 	.pokemon-wrapper.pokemon-single-page.pokemon-page .title.poke-name {
 		position: relative;

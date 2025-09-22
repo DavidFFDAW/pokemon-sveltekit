@@ -10,6 +10,7 @@
 	let originalMoves: ParsedPokemonMove[] = [];
 	let selectedPokemon: string = '';
 	let currentVersion = '';
+	let currentLearningMethod = 'level-up';
 	export let data;
 
 	const changedPokemon = async () => {
@@ -18,7 +19,9 @@
 		versions = pokeData.data.versions;
 		moves = pokeData.data.moves;
 		originalMoves = pokeData.data.moves;
-		currentVersion = versions[0] ?? '';
+		currentVersion = pokeData.data.versions.includes(currentVersion)
+			? currentVersion
+			: pokeData.data.versions[0];
 	};
 
 	const scrollToPoke = (event: Event) => {
@@ -35,8 +38,9 @@
 		foundPoke.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	};
 
-	$: moves = originalMoves.filter((m) => m.version === currentVersion);
-    
+	$: moves = originalMoves.filter(
+		(m) => m.version === currentVersion && m.level_learning_method === currentLearningMethod
+	);
 </script>
 
 <div class="pokemoves-page">
@@ -49,7 +53,7 @@
 		/>
 
 		<ul class="pokemon-select-list row fancy-scrollbar">
-			{#each data.pokemons.slice(0, 10) as pokemon}
+			{#each data.pokemons as pokemon}
 				<li class="pokemon-select-item" data-id={pokemon.id}>
 					<label class="form-item radio-item relative">
 						<input
@@ -79,9 +83,56 @@
 			</select>
 		{/if}
 
+		<div class="w1 pokemon-move-learning-methods">
+			<label class="form-item app-radio radio-item">
+				<input
+					type="radio"
+					name="level_learning_method"
+					value="level-up"
+					bind:group={currentLearningMethod}
+				/>
+				<div class="inner">
+					<span>Por nivel</span>
+				</div>
+			</label>
+			<label class="form-item app-radio radio-item">
+				<input
+					type="radio"
+					name="level_learning_method"
+					value="machine"
+					bind:group={currentLearningMethod}
+				/>
+				<div class="inner">
+					<span>Por MT</span>
+				</div>
+			</label>
+			<label class="form-item app-radio radio-item">
+				<input
+					type="radio"
+					name="level_learning_method"
+					value="tutor"
+					bind:group={currentLearningMethod}
+				/>
+				<div class="inner">
+					<span>Por tutor</span>
+				</div>
+			</label>
+			<label class="form-item app-radio radio-item">
+				<input
+					type="radio"
+					name="level_learning_method"
+					value="egg"
+					bind:group={currentLearningMethod}
+				/>
+				<div class="inner">
+					<span>Por huevo</span>
+				</div>
+			</label>
+		</div>
+
 		{#if moves.length > 0}
 			<ul class="poke-moves-grid">
-				{#each moves.filter((m) => m.level_learning_method === 'level-up') as move}
+				{#each moves as move}
 					<PokeMove {move} />
 				{/each}
 			</ul>
@@ -153,9 +204,31 @@
 		border-radius: 8px;
 	}
 
-    ul.poke-moves-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-        gap: 15px;
-    }
+	ul.poke-moves-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+		gap: 15px;
+	}
+	.pokemon-move-learning-methods {
+		width: 100%;
+		display: flex;
+		justify-content: flex-start;
+		margin: 15px 0;
+	}
+	.pokemon-move-learning-methods > label.app-radio.radio-item {
+		flex: 1;
+		text-align: center;
+	}
+	.pokemon-move-learning-methods > label.app-radio.radio-item .inner {
+		border-radius: 0;
+		border-right: 0;
+	}
+	.pokemon-move-learning-methods > label.app-radio.radio-item:first-child .inner {
+		border-radius: 8px 0 0 8px;
+	}
+
+	.pokemon-move-learning-methods > label.app-radio.radio-item:last-child .inner {
+		border-radius: 0 8px 8px 0;
+		border-right: 1px solid #ccc;
+	}
 </style>

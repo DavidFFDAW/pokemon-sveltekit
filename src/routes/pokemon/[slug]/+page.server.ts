@@ -140,7 +140,7 @@ export const load = async ({ params }) => {
 		parsed_moves: getParsedPokemonMovePool(pokemonData.moves),
 		metas: {
 			title: speciesName.charAt(0).toUpperCase() + speciesName.slice(1),
-			description: genus ? `${genus.genus} Pokémon` : 'Pokémon information',
+			description: genus ? `${genus.genus}` : 'Pokémon information',
 			image: pokemonData.sprites.other['home'].front_default || '/favicon.png',
 			favicon: pokemonData.sprites.front_default || '/favicon.png',
 		}

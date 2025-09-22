@@ -416,6 +416,6 @@
 	}
 	svg path {
 		fill: #fff;
-		fill-opacity: .75;
+		fill-opacity: 0.75;
 	}
 </style>
