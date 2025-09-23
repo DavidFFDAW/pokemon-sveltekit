@@ -101,6 +101,10 @@
 				</div>
 			</div>
 
+			<pre>
+				{JSON.stringify(data.evoChain, null, 4)}
+			</pre>
+
 			<div class="pokemon-stats-container">
 				<h2>Estadísticas</h2>
 				<PokeStats stats={data.stats} />

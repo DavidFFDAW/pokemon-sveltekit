@@ -1,6 +1,6 @@
 <script lang="ts">
 	import PokedexByTypeVisualizer from '$lib/pokedex-by-type-visualizer.svelte';
-	import paldeaDex from './paldea.json';
+	export let data;
 </script>
 
-<PokedexByTypeVisualizer pokedex={paldeaDex} />	
+<PokedexByTypeVisualizer pokedex={data.pokemons} />
