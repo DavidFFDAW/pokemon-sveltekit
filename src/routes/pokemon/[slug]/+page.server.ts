@@ -1,21 +1,36 @@
+import pokemons from '$lib/data/pokemon.json';
 import { PokeTypes } from '$lib/constant/types.js';
-import type { ApiPokemonResponse } from '$lib/types/api-types.js';
 import { getShinyProbability } from '$lib/utils/general.utils.js';
 import { getParsedPokemonMovePool } from '$lib/utils/moves.utils.js';
 import { getTypeEffectiveness } from '$lib/utils/types.utils.js';
+
+const getPokemon = async (name: string) => {
+	const pokemonResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+	if (!pokemonResponse.ok) throw new Error('Pokemon not found');
+	const pokemonData = await pokemonResponse.json();
+
+	const pokemonSpeciesResponse = await fetch(pokemonData.species.url);
+	if (!pokemonSpeciesResponse.ok) throw new Error('Pokemon species not found');
+	const pokemonSpeciesData = await pokemonSpeciesResponse.json();
+
+	const pokemonEvolutionResponse = await fetch(pokemonSpeciesData.evolution_chain.url);
+	if (!pokemonEvolutionResponse.ok) throw new Error('Pokemon evolution not found');
+
+	return {
+		pokemon: pokemonData,
+		specie: pokemonSpeciesData,
+		evolution: await pokemonEvolutionResponse.json()
+	}
+}
 
 export const load = async ({ params }) => {
 	const pokemon = params.slug;
 	if (!pokemon) throw new Error('Pokemon not found');
 
-	const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
-	if (!response.ok) throw new Error('Pokemon not found');
-
-	const pokemonData = await response.json() as ApiPokemonResponse;
-	const specie = await fetch(pokemonData.species.url).then(res => res.json());
-
-	const evoChain = await fetch(specie.evolution_chain.url).then(res => res.json());
+	const { pokemon: pokemonData, specie, evolution } = await getPokemon(pokemon);
 	const genus = specie.genera.find((g: any) => g.language.name === 'es');
+	const varietyNames = specie.varieties.map((v: any) => v.pokemon.name);
+	const varieties = specie.varieties.length > 1 ? pokemons.filter(p => varietyNames.includes(p.name)) : [];
 
 	// Obtener las estadísticas
 	const stats = pokemonData.stats.reduce((carry: { [key: string]: number }, stat: any) => {
@@ -36,12 +51,13 @@ export const load = async ({ params }) => {
 		labels,
 		genus,
 		specie,
+		varieties,
 		pokemon: pokemonData,
 		shiny: getShinyProbability(),
 		types: types,
 		typeRelations: getTypeEffectiveness(types.map(t => t.slug)),
 		parsed_moves: getParsedPokemonMovePool(pokemonData.moves),
-		evoChain,
+		evolution,
 		metas: {
 			title: speciesName.charAt(0).toUpperCase() + speciesName.slice(1),
 			description: genus ? `${genus.genus}` : 'Pokémon information',

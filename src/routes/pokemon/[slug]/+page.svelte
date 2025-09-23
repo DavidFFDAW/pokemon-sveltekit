@@ -101,8 +101,38 @@
 				</div>
 			</div>
 
+			{#if data.varieties.length > 0}
+				<div class="poke-forms-block">
+					<h2>Formas</h2>
+					<div class="poke-forms poke-grid">
+						{#each data.varieties as variety}
+							<a
+								href={`/pokemon/${variety.id}`}
+								class="poke-form-item"
+								title={`Ver ${variety.name}`}
+							>
+								<img
+									src={variety.image}
+									alt={variety.name}
+									loading="lazy"
+								/>
+								<span class="poke-form-name capitalize">{variety.name}</span>
+							</a>
+						{/each}
+					</div>
+				</div>
+			{/if}
+
+			<div class="egg-group">
+				{#each data.specie.egg_groups as group}
+					<span class="egg-group-item badge">
+						{group.name}
+					</span>
+				{/each}
+			</div>
+
 			<pre>
-				{JSON.stringify(data.evoChain, null, 4)}
+				{JSON.stringify(data, null, 4)}
 			</pre>
 
 			<div class="pokemon-stats-container">
@@ -370,6 +400,23 @@
 	}
 	.pokemon-stats-container h2 {
 		text-align: left;
+	}
+
+	.poke-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+		gap: 15px;
+	}
+	.poke-grid .poke-form-item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		background-color: #fff;
+		border: 1px solid #eee;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+		border-radius: 12px;
+		padding: 10px;
 	}
 
 	@media only screen and (min-width: 767px) {
