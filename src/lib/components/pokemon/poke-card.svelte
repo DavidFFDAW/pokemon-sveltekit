@@ -17,7 +17,7 @@
     </div>
 
     {#if showTypes}
-        <div class="types">
+        <div class="poke-types types pokemon-types-container">
             {#each pokemon.types as type}
                 <PokeType type={type.slug} text={type.name} />
             {/each}
@@ -27,6 +27,10 @@
 
 <style>
     .poke-card-item.poke-card.single-pokemon {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
         text-align: center;
         border: 1px solid #ddd;
         border-radius: 8px;
@@ -65,6 +69,14 @@
         transform: rotate(-20deg);
         animation: sparkle 1.5s infinite;
     }
+
+	.pokemon-types-container.poke-types {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 6px;
+	}
 
     @keyframes sparkle {
         0%, 100% {

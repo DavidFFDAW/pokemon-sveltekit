@@ -1,5 +1,6 @@
 <script lang="ts">
-	import PokeType from '$lib/poke-type.svelte';
+	import Pagination from '$lib/components/pagination.svelte';
+import PokeType from '$lib/poke-type.svelte';
 	import { fade } from 'svelte/transition';
 
 	export let data;
@@ -21,6 +22,8 @@
 	</header>
 
 	<section class="poke-list-container">
+		<Pagination page={data.pokemons.page} total={data.pokemons.total} perPage={data.pokemons.limit} />
+		
 		<ul class="list">
 			{#each data.pokemons.list as poke}
 				<li class="poke-card" class:shiny={poke.is_shiny} in:fade>

@@ -21,6 +21,8 @@
 <div
 	class="pokemon-wrapper pokemon-single-page pokemon-page type-{data.types[0].slug} light-theme"
 	class:shiny={data.shiny}
+	class:legendary={data.specie.is_legendary}
+	class:mythical={data.specie.is_mythical}
 >
 	<div class="pokemon-page-search-container">
 		<SearchInput />
