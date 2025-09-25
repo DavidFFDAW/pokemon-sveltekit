@@ -1,10 +1,20 @@
-const makeFetchRequest = async <T>(url: string, options: RequestInit): Promise<Response & { data: T }> => {
+export interface HttpResponse<T> {
+	ok: boolean;
+	status: number;
+	statusText: string;
+	url: string;
+	data: T;
+}
+const makeFetchRequest = async <T>(url: string, options: RequestInit): Promise<HttpResponse<T>> => {
     const response = await fetch(url, options);
     const data = await response.json() as T;
 
     return {
-        ...response,
-        data
+		ok: response.ok,
+		status: response.status,
+		statusText: response.statusText,
+		url: response.url,
+        data: data
     };
 };
 

@@ -1,3 +1,6 @@
+import type { ApiListingResponse, ApiNamedResource } from "$lib/types/api-types";
+import { HttpService } from "./http.service";
+
 export const POKEAPI = 'https://pokeapi.co/api/v2/';
 
 export const ApiPokemon = {
@@ -9,9 +12,11 @@ export const ApiPokemon = {
 		const response = await fetch(`${POKEAPI}pokemon/${endpoint}`);
 		return { response, data: await response.json() }
 	},
-	getEggGroup: async (slug: string) => {
-		const response = await fetch(`${POKEAPI}egg-group/${slug}`);
-		return { response, data: await response.json() }
+	getEggGroups: () => {
+		return HttpService.get<ApiListingResponse<ApiNamedResource>>(`${POKEAPI}egg-group`);
+	},
+	getSingleEggGroup: async (slug: string) => {
+		return HttpService.get<any>(`${POKEAPI}egg-group/${slug}`);
 	}
 }
 export default ApiPokemon

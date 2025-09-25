@@ -17,7 +17,8 @@ export const load = async ({ url }) => {
 			name: searchName ? searchName.toLowerCase() : null
 		},
 		metas: {
-			title: searchName ? `Busqueda ${searchName}` : 'Listado',
+			title: searchName ? `Busqueda ${searchName}` : 'Listado de Pokémons',
+			description: searchName ? `Resultados de la búsqueda para ${searchName}` : 'Listado de pokémons aleatorios',
 		}
 	};
 };

@@ -55,12 +55,12 @@ export const load = async ({ params }) => {
 		pokemon: pokemonData,
 		shiny: getShinyProbability(),
 		types: types,
-		typeRelations: getTypeEffectiveness(types.map(t => t.slug)),
+		typeRelations: getTypeEffectiveness(types.map((t: any) => t.slug)),
 		parsed_moves: getParsedPokemonMovePool(pokemonData.moves),
 		evolution,
 		metas: {
 			title: speciesName.charAt(0).toUpperCase() + speciesName.slice(1),
-			description: genus ? `${genus.genus}` : 'Pokémon information',
+			description: genus ? `Página de detalle del pokémon ${speciesName}, el ${genus.genus}` : `Página de detalle del pokémon ${speciesName}`,
 			image: pokemonData.sprites.other['home'].front_default || '/favicon.png',
 			favicon: pokemonData.sprites.front_default || '/favicon.png',
 		}
