@@ -1,0 +1,9 @@
+.grid {
+	display: grid;
+}
+
+@media (min-width: 767px) {
+	.responsive {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}

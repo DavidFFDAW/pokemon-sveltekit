@@ -1,7 +1,7 @@
 import pokemons from '$lib/data/pokemon.json';
 import { getShinyProbability } from '$lib/utils/general.utils';
 
-export interface LocalPokemon {
+export interface LocalPokemonInterface {
    id: number;
    url: string;
    name: string;

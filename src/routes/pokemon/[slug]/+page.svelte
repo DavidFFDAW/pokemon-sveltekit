@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PokeStats from '$lib/components/poke-stats.svelte';
 	import SearchInput from '$lib/components/search/search-input.svelte';
-	import TypeIcon from '$lib/components/type-icons/type-icon.svelte';
+	// import TypeIcon from '$lib/components/type-icons/type-icon.svelte';
 	import PokeType from '$lib/poke-type.svelte';
 
 	export let data;
@@ -16,6 +16,12 @@
 			console.error('Error playing audio:', error);
 		});
 	};
+
+	const pokeScrollToElement = (selector: string) => (event: Event) => {
+		event.preventDefault();
+		const element = document.querySelector(selector);
+		if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	};
 </script>
 
 <div
@@ -23,13 +29,15 @@
 	class:shiny={data.shiny}
 	class:legendary={data.specie.is_legendary}
 	class:mythical={data.specie.is_mythical}
+	class:ultra-beast={data.specie.is_ultra_beast}
 >
 	<div class="pokemon-page-search-container">
 		<SearchInput />
 	</div>
 
 	<div class="pokemon-type-icon">
-		<TypeIcon type={data.types[0].slug} />
+		<!-- <TypeIcon type={data.types[0].slug} /> -->
+		 <img src={`https://raw.githubusercontent.com/duiker101/pokemon-type-svg-icons/refs/heads/master/icons/${data.types[0].slug}.svg`} alt={data.types[0].name} />
 	</div>
 
 	{#if data.pokemon}
@@ -133,10 +141,6 @@
 				{/each}
 			</div>
 
-			<pre>
-				{JSON.stringify(data, null, 4)}
-			</pre>
-
 			<div class="pokemon-stats-container">
 				<h2>Estadísticas</h2>
 				<PokeStats stats={data.stats} />
@@ -145,10 +149,36 @@
 			<!-- <Debug data={data.parsed_moves} /> -->
 			<!-- <PokeMove move={data.parsed_moves.parsedMovePool[0]} /> -->
 		</div>
+
+
+		<nav class="poke-page-navigation">
+			<button type="button" on:click={pokeScrollToElement('.pokemon-stats-container')}>Ver estadísticas</button>
+			<button type="button" on:click={pokeScrollToElement('.poke-forms-block')}>Ver formas</button>
+			<button type="button" on:click={pokeScrollToElement('.poke-evolutions-block')}>Ver evoluciones</button>
+		</nav>
 	{/if}
 </div>
 
 <style>
+	.poke-page-navigation {
+		position: fixed;
+		bottom: 12px;
+		right: 6px;
+		background-color: transparent;
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		z-index: 10;
+	}
+	.poke-page-navigation button {
+		font-size: 0.75rem;
+		padding: 6px;
+		color: #fff;
+		background-color: var(--red);
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+		border-radius: 8px;
+		cursor: pointer;
+	}
 	.pokemon-wrapper.pokemon-single-page.pokemon-page.type-fire {
 		--pokemon-page-type-bg: #f08030;
 	}

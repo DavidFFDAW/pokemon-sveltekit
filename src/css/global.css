@@ -1,3 +1,5 @@
+@import './layout.css';
+
 @font-face {
     font-family: "violet";
     src: url("/fonts/sony-sketch.ttf");
@@ -15,6 +17,25 @@
 :root {
     --red: #e64d4d;
     --pokemon-page-type-bg: #e64d4d;
+	--fire: #e64d4d;
+	--water: #2980f0;
+	--grass: #3fa129;
+	--electric: #fac000;
+	--ice: #3dcef3;
+	--fighting: #ff8000;
+	--poison: #9141cb;
+	--ground: #914f21;
+	--flying: #81b9ef;
+	--psychic: #ef4179;
+	--bug: #91a119;
+	--rock: #afa981;
+	--ghost: #704170;
+	--dragon: #5060e1;
+	--dark: #624d4e;
+	--steel: #60a1b8;
+	--fairy: #ef70ef;
+	--normal: #9fa19f;
+	--stellar: #40b5a5;
 }
 
 *,
@@ -23,6 +44,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+	line-height: 1.2;
+	transition: all 0.3s ease-in-out;
 }
 
 html,

@@ -14,8 +14,10 @@ export async function load({ params }) {
 	const groupPokemons = LocalPokemon.getAllPokemons().filter(
 		(poke) => pokemonsInGroup.includes(poke.name)
 	);
+
 	return {
 		eggGroup: apiEggGroup.data,
-		pokemons: groupPokemons
+		pokemons: groupPokemons,
+		isThereShiny: groupPokemons.some(p => p.is_shiny),
 	};
 }
