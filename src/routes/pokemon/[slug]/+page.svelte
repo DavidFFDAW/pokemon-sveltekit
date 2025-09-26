@@ -37,7 +37,10 @@
 
 	<div class="pokemon-type-icon">
 		<!-- <TypeIcon type={data.types[0].slug} /> -->
-		 <img src={`https://raw.githubusercontent.com/duiker101/pokemon-type-svg-icons/refs/heads/master/icons/${data.types[0].slug}.svg`} alt={data.types[0].name} />
+		<img
+			src={`https://raw.githubusercontent.com/duiker101/pokemon-type-svg-icons/refs/heads/master/icons/${data.types[0].slug}.svg`}
+			alt={data.types[0].name}
+		/>
 	</div>
 
 	{#if data.pokemon}
@@ -121,11 +124,7 @@
 								class="poke-form-item"
 								title={`Ver ${variety.name}`}
 							>
-								<img
-									src={variety.image}
-									alt={variety.name}
-									loading="lazy"
-								/>
+								<img src={variety.image} alt={variety.name} loading="lazy" />
 								<span class="poke-form-name capitalize">{variety.name}</span>
 							</a>
 						{/each}
@@ -150,11 +149,14 @@
 			<!-- <PokeMove move={data.parsed_moves.parsedMovePool[0]} /> -->
 		</div>
 
-
 		<nav class="poke-page-navigation">
-			<button type="button" on:click={pokeScrollToElement('.pokemon-stats-container')}>Ver estadísticas</button>
+			<button type="button" on:click={pokeScrollToElement('.pokemon-stats-container')}
+				>Ver estadísticas</button
+			>
 			<button type="button" on:click={pokeScrollToElement('.poke-forms-block')}>Ver formas</button>
-			<button type="button" on:click={pokeScrollToElement('.poke-evolutions-block')}>Ver evoluciones</button>
+			<button type="button" on:click={pokeScrollToElement('.poke-evolutions-block')}
+				>Ver evoluciones</button
+			>
 		</nav>
 	{/if}
 </div>
@@ -289,9 +291,9 @@
 		width: 200px;
 		transform: translateX(50%);
 		opacity: 0.4;
-		background-size: contain;
+		background-size: fill;
 		background-repeat: repeat;
-		background-position: center;
+		background-position: top;
 		pointer-events: none;
 	}
 	.pokemon-wrapper.pokemon-single-page.pokemon-page .pokemon-datas-wrapper {
@@ -346,7 +348,8 @@
 	}
 
 	.pokemon-datas-wrapper {
-		animation: slideUp 0.6s ease-in;
+		animation: slideUp 0.8s ease-in;
+		animation-fill-mode: forwards;
 	}
 	.pokemon-name-types h1 {
 		margin: 0;

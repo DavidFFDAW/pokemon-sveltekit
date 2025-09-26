@@ -17,25 +17,25 @@
 :root {
     --red: #e64d4d;
     --pokemon-page-type-bg: #e64d4d;
-	--fire: #e64d4d;
-	--water: #2980f0;
-	--grass: #3fa129;
-	--electric: #fac000;
-	--ice: #3dcef3;
-	--fighting: #ff8000;
-	--poison: #9141cb;
-	--ground: #914f21;
-	--flying: #81b9ef;
-	--psychic: #ef4179;
-	--bug: #91a119;
-	--rock: #afa981;
-	--ghost: #704170;
-	--dragon: #5060e1;
-	--dark: #624d4e;
-	--steel: #60a1b8;
-	--fairy: #ef70ef;
-	--normal: #9fa19f;
-	--stellar: #40b5a5;
+    --fire: #e64d4d;
+    --water: #2980f0;
+    --grass: #3fa129;
+    --electric: #fac000;
+    --ice: #3dcef3;
+    --fighting: #ff8000;
+    --poison: #9141cb;
+    --ground: #914f21;
+    --flying: #81b9ef;
+    --psychic: #ef4179;
+    --bug: #91a119;
+    --rock: #afa981;
+    --ghost: #704170;
+    --dragon: #5060e1;
+    --dark: #624d4e;
+    --steel: #60a1b8;
+    --fairy: #ef70ef;
+    --normal: #9fa19f;
+    --stellar: #40b5a5;
 }
 
 *,
@@ -44,8 +44,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-	line-height: 1.2;
-	transition: all 0.3s ease-in-out;
+    line-height: 1.2;
+    transition: all 0.3s ease-in-out;
 }
 
 html,
@@ -54,6 +54,23 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+}
+
+body {
+    position: relative;
+}
+
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: -25%;
+    width: 50%;
+    height: 100%;
+    transform: skewX(20deg);
+    background: var(--red);
+    z-index: -1;
 }
 
 img {
@@ -185,6 +202,9 @@ label.app-radio.radio-item input[type="checkbox"]:checked+.inner {
 .poke-type.type span {
     display: block;
     font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: .9rem;
     font-family: 'violet', sans-serif;
 }
 

@@ -4,16 +4,16 @@
 	import { navigating, page } from '$app/state';
 	import Loader from '$lib/components/loader.svelte';
 	import '../css/global.css';
-    
+
 	export let data;
 </script>
 
 <MetaTags pageDatas={page.data} />
 
 <main class="app-main poke-main-container">
-    <Loader {navigating} />
+	<Loader {navigating} />
 	{#key data.layout.canonical}
-		<div class="poke-real-content" transition:slide={{ duration: 300, axis: 'x' }}>
+		<div class="poke-real-content">
 			<slot></slot>
 		</div>
 	{/key}

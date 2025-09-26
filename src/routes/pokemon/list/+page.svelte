@@ -1,13 +1,14 @@
 <script lang="ts">
 	import Pagination from '$lib/components/pagination.svelte';
-import PokeType from '$lib/poke-type.svelte';
+	import PokeCard from '$lib/components/pokemon/poke-card.svelte';
+	import PokeType from '$lib/poke-type.svelte';
 	import { fade } from 'svelte/transition';
 
 	export let data;
 </script>
 
 <div class="page">
-    <a href="/test">Test</a>
+	<a href="/test">Test</a>
 	<header class="header">
 		<h1>Página búsqueda</h1>
 		<form method="get" action="/pokemon/list">
@@ -22,27 +23,15 @@ import PokeType from '$lib/poke-type.svelte';
 	</header>
 
 	<section class="poke-list-container">
-		<Pagination page={data.pokemons.page} total={data.pokemons.total} perPage={data.pokemons.limit} />
-		
+		<Pagination
+			page={data.pokemons.page}
+			total={data.pokemons.total}
+			perPage={data.pokemons.limit}
+		/>
+
 		<ul class="list">
 			{#each data.pokemons.list as poke}
-				<li class="poke-card" class:shiny={poke.is_shiny} in:fade>
-					<a href={`/pokemon/${poke.id}`}>
-						<img src={poke.image} class="poke-image normal" alt={poke.name} />
-						<img
-							src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/{poke.id}.png"
-							class="poke-image shiny"
-							alt={poke.name}
-						/>
-						<p>{poke.name}</p>
-
-						<div class="types">
-							{#each poke.types as type}
-								<PokeType type={type.slug} text={type.name} />
-							{/each}
-						</div>
-					</a>
-				</li>
+				<PokeCard pokemon={poke} showTypes={true} />
 			{/each}
 		</ul>
 	</section>
@@ -94,50 +83,9 @@ import PokeType from '$lib/poke-type.svelte';
 	.list {
 		list-style: none;
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 		gap: 15px;
 		padding: 20px 10px;
 		margin: 0;
-	}
-	.poke-card {
-		background: #f8f8f8;
-		border-radius: 10px;
-		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-		text-align: center;
-		transition: transform 0.2s;
-	}
-	.poke-card a {
-		padding: 10px;
-		margin: 0;
-	}
-	.poke-card:hover {
-		transform: translateY(-5px);
-	}
-	.poke-card img {
-		width: 100px;
-		height: 100px;
-		object-fit: contain;
-	}
-	.poke-card img.shiny {
-		display: none;
-	}
-	.poke-card.shiny img.shiny {
-		display: inline;
-	}
-	.poke-card.shiny img.normal {
-		display: none;
-	}
-	.poke-card p {
-		margin: 10px 0 0;
-		font-weight: bold;
-		text-transform: capitalize;
-		color: #333;
-	}
-
-	.poke-card .types {
-		margin-top: 10px;
-		display: flex;
-		justify-content: center;
-		gap: 6px;
 	}
 </style>

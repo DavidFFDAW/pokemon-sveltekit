@@ -1,28 +1,38 @@
 <script lang="ts">
-	import PokeType from "$lib/poke-type.svelte";
-	import { type LocalPokemonInterface } from "$lib/services/local.pokemon.service";
+	import PokeType from '$lib/poke-type.svelte';
+	import { type LocalPokemonInterface } from '$lib/services/local.pokemon.service';
 
-    export let width: number = 150;
-    export let pokemon: LocalPokemonInterface;
-    export let showTypes: boolean = true;
+	export let width: number = 150;
+	export let pokemon: LocalPokemonInterface;
+	export let showTypes: boolean = true;
 </script>
 
-<a href={`/pokemon/${pokemon.id}`} class="poke-card-item poke-card single-pokemon main-type-{pokemon.types[0].slug}" class:shiny-pokemon={pokemon.is_shiny}>
-    <h3 class="title poke-title violet poke-name">{pokemon.name}</h3>
-    <div class="poke-image-container" class:shiny={pokemon.is_shiny}>
-        <img width={width} class="poke-image normal-image" loading="lazy" draggable="false" 
-            src={pokemon.is_shiny ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/${pokemon.id}.png` : pokemon.image}
-            alt={pokemon.name}
-        />
-    </div>
+<a
+	href={`/pokemon/${pokemon.id}`}
+	class="poke-card-item poke-card single-pokemon main-type-{pokemon.types[0].slug}"
+	class:shiny-pokemon={pokemon.is_shiny}
+>
+	<h3 class="title poke-title violet poke-name">{pokemon.name}</h3>
+	<div class="poke-image-container" class:shiny={pokemon.is_shiny}>
+		<img
+			{width}
+			class="poke-image normal-image"
+			loading="lazy"
+			draggable="false"
+			src={pokemon.is_shiny
+				? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/${pokemon.id}.png`
+				: pokemon.image}
+			alt={pokemon.name}
+		/>
+	</div>
 
-    {#if showTypes}
-        <div class="poke-types types pokemon-types-container">
-            {#each pokemon.types as type}
-                <PokeType type={type.slug} text={type.name} />
-            {/each}
-        </div>
-    {/if}
+	{#if showTypes}
+		<div class="poke-types types pokemon-types-container">
+			{#each pokemon.types as type}
+				<PokeType type={type.slug} text={type.name} />
+			{/each}
+		</div>
+	{/if}
 </a>
 
 <style>
@@ -83,20 +93,33 @@
 	.main-type-normal {
 		--line-color: var(--normal);
 	}
-    .poke-card-item.poke-card.single-pokemon {
+	.poke-card-item.poke-card.single-pokemon {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: 8px;
-        text-align: center;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 15px;
-        background-color: #fff;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        position: relative;
-    }
-	
+		text-align: center;
+		border: 1px solid #ddd;
+		border-radius: 8px;
+		padding: 15px;
+		background-color: #fff;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.poke-card-item.poke-card.single-pokemon::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 35%;
+		background: linear-gradient(0deg, #ffffff31, var(--line-color) 80%);
+		opacity: 0.8;
+		z-index: 0;
+	}
+
 	.poke-card-item.poke-card.single-pokemon .title.poke-title.poke-name {
 		position: relative;
 		font-size: 1.65rem;
@@ -106,7 +129,7 @@
 		margin: 0;
 	}
 	.poke-card-item.poke-card.single-pokemon .title.poke-title.poke-name::after {
-		content: "";
+		content: '';
 		position: absolute;
 		bottom: -6px;
 		left: 50%;
@@ -114,38 +137,39 @@
 		width: 60%;
 		height: 4px;
 		background-color: var(--line-color);
-		opacity: 0.8;
+		opacity: 1;
 		border-radius: 15px;
 	}
-    .poke-image-container {
-        position: relative;
-        width: 150px;
-        object-fit: cover;
-    }
-    .poke-image-container img.poke-image {
-        max-width: 100%;
-        height: auto;
-        object-fit: cover;
-    }
-    .poke-image-container.shiny::after {
-        content: "✨";
-        position: absolute;
-        top: 30px;
-        right: 15px;
-        font-size: 1.5rem;
-        transform: rotate(-20deg);
-        animation: sparkle 1.5s infinite;
-        animation-delay: 0.5s;
-    }
-    .poke-image-container.shiny::before {
-        content: "✨";
-        position: absolute;
-        bottom: 6px;
-        left: 15px;
-        font-size: 1.5rem;
-        transform: rotate(-20deg);
-        animation: sparkle 1.5s infinite;
-    }
+	.poke-image-container {
+		position: relative;
+		width: 150px;
+		object-fit: cover;
+	}
+	.poke-image-container img.poke-image {
+		max-width: 100%;
+		height: auto;
+		object-fit: cover;
+		filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+	}
+	.poke-image-container.shiny::after {
+		content: '✨';
+		position: absolute;
+		top: 30px;
+		right: 15px;
+		font-size: 1.5rem;
+		transform: rotate(-20deg);
+		animation: sparkle 1.5s infinite;
+		animation-delay: 0.5s;
+	}
+	.poke-image-container.shiny::before {
+		content: '✨';
+		position: absolute;
+		bottom: 6px;
+		left: 15px;
+		font-size: 1.5rem;
+		transform: rotate(-20deg);
+		animation: sparkle 1.5s infinite;
+	}
 
 	.pokemon-types-container.poke-types {
 		display: flex;
@@ -155,14 +179,15 @@
 		gap: 6px;
 	}
 
-    @keyframes sparkle {
-        0%, 100% {
-            opacity: 1;
-            transform: rotate(-20deg) scale(1);
-        }
-        50% {
-            opacity: 0.5;
-            transform: rotate(-20deg) scale(1.2);
-        }
-    }
+	@keyframes sparkle {
+		0%,
+		100% {
+			opacity: 1;
+			transform: rotate(-20deg) scale(1);
+		}
+		50% {
+			opacity: 0.5;
+			transform: rotate(-20deg) scale(1.2);
+		}
+	}
 </style>
