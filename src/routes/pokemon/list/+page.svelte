@@ -1,8 +1,6 @@
 <script lang="ts">
 	import Pagination from '$lib/components/pagination.svelte';
 	import PokeCard from '$lib/components/pokemon/poke-card.svelte';
-	import PokeType from '$lib/poke-type.svelte';
-	import { fade } from 'svelte/transition';
 
 	export let data;
 </script>
@@ -39,11 +37,14 @@
 
 <style>
 	.page {
-		padding: 15px 20px;
+		padding: 50px 150px;
 	}
+    @media only screen and (max-width: 768px) {
+        .page {
+            padding: 25px;
+        }
+    }
 	.page header.header {
-		margin: 0 -20px;
-		margin-top: -15px;
 		padding: 15px;
 		background-color: #efefef;
 		border-radius: 8px;
@@ -80,6 +81,7 @@
 		color: #333;
 		padding: 5px;
 	}
+
 	.list {
 		list-style: none;
 		display: grid;

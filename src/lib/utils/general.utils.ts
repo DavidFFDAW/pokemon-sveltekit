@@ -3,3 +3,13 @@ export const slugify = (text: string) => text.trim().toLowerCase().replace(/\s+/
 export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 export const getShinyProbability = (max: number = SHINY_PROBABILITY) =>
 	Math.floor(Math.random() * max) + 1 === 1;
+
+export async function catchError<T>(promise: Promise<T>) {
+    try {
+        const data = await promise;
+        return [data as any, null];
+    } catch (genericError) {
+        console.log(genericError);
+        return [null, genericError];
+    }
+}

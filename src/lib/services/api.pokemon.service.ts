@@ -17,6 +17,9 @@ export const ApiPokemon = {
 	},
 	getSingleEggGroup: async (slug: string) => {
 		return HttpService.get<any>(`${POKEAPI}egg-group/${slug}`);
+	},
+	getPokedexByRegion: async (slug: string) => {
+		return HttpService.get<any>(`${POKEAPI}pokedex/${slug}`);
 	}
 }
 export default ApiPokemon

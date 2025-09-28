@@ -5,21 +5,22 @@
 	export let width: number = 150;
 	export let pokemon: LocalPokemonInterface;
 	export let showTypes: boolean = true;
+    export let forceShiny: boolean = false;
 </script>
 
 <a
 	href={`/pokemon/${pokemon.id}`}
 	class="poke-card-item poke-card single-pokemon main-type-{pokemon.types[0].slug}"
-	class:shiny-pokemon={pokemon.is_shiny}
+	class:shiny-pokemon={pokemon.is_shiny || forceShiny}
 >
 	<h3 class="title poke-title violet poke-name">{pokemon.name}</h3>
-	<div class="poke-image-container" class:shiny={pokemon.is_shiny}>
+	<div class="poke-image-container" class:shiny={pokemon.is_shiny || forceShiny}>
 		<img
 			{width}
 			class="poke-image normal-image"
 			loading="lazy"
 			draggable="false"
-			src={pokemon.is_shiny
+			src={pokemon.is_shiny || forceShiny
 				? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/${pokemon.id}.png`
 				: pokemon.image}
 			alt={pokemon.name}
@@ -38,6 +39,7 @@
 <style>
 	:root {
 		--line-color: #ffcb05;
+        --title-color: #000;
 	}
 	.main-type-fire {
 		--line-color: var(--fire);
@@ -77,12 +79,15 @@
 	}
 	.main-type-ghost {
 		--line-color: var(--ghost);
+        --title-color: #fff;
 	}
 	.main-type-dragon {
 		--line-color: var(--dragon);
+        --title-color: #fff;
 	}
 	.main-type-dark {
 		--line-color: var(--dark);
+        --title-color: #fff;
 	}
 	.main-type-steel {
 		--line-color: var(--steel);
@@ -94,8 +99,10 @@
 		--line-color: var(--normal);
 	}
 	.poke-card-item.poke-card.single-pokemon {
+        height: 100%;
 		display: flex;
 		flex-direction: column;
+        justify-content: space-between;
 		align-items: center;
 		gap: 8px;
 		text-align: center;
@@ -107,6 +114,15 @@
 		position: relative;
 		overflow: hidden;
 	}
+
+	.poke-card-item.poke-card.single-pokemon:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        transform: translateY(-4px);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        opacity: 1;
+    }
+
 
 	.poke-card-item.poke-card.single-pokemon::before {
 		content: '';
@@ -126,6 +142,7 @@
 		text-transform: capitalize;
 		font-weight: 700;
 		letter-spacing: 1px;
+        color: var(--title-color);
 		margin: 0;
 	}
 	.poke-card-item.poke-card.single-pokemon .title.poke-title.poke-name::after {
@@ -150,6 +167,7 @@
 		height: auto;
 		object-fit: cover;
 		filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+        padding: 2px;
 	}
 	.poke-image-container.shiny::after {
 		content: '✨';
