@@ -7,10 +7,10 @@
   $: typeText = translate ? PokeTypes[type] || type : text;
 </script>
 
-<div class="poke-type type {type}">
+<a class="poke-type type {type}" href="/pokemon/type/{type}">
   <img class="poke-type-icon type-icon" src={`https://raw.githubusercontent.com/duiker101/pokemon-type-svg-icons/refs/heads/master/icons/${type}.svg`} alt={type} />
   <span class="poke-type-text">{typeText}</span>
-</div>
+</a>
 
 <style>
 	span {

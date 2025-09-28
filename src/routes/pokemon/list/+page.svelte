@@ -83,11 +83,11 @@
 	}
 
 	.list {
-		list-style: none;
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-		gap: 15px;
-		padding: 20px 10px;
-		margin: 0;
-	}
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+        padding: 30px 160px;
+        align-items: stretch;
+    }
 </style>

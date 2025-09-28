@@ -61,7 +61,7 @@ body {
 }
 
 
-body::before {
+/* body::before {
     content: "";
     position: fixed;
     top: 0;
@@ -71,7 +71,7 @@ body::before {
     transform: skewX(20deg);
     background: var(--red);
     z-index: -1;
-}
+} */
 
 img {
     max-width: 100%;
@@ -344,4 +344,20 @@ label.app-radio.radio-item input[type="checkbox"]:checked+.inner {
 
 .fancy-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+
+.poke-list,
+ul.poke-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+    padding: 20px 10px;
+    margin: 0;
+}
+
+ul.poke-list li {
+    margin: 0;
+    display: block;
 }

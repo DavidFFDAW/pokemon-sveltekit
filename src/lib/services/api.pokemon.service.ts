@@ -1,3 +1,4 @@
+import type { ApiTypeResponse } from "$lib/types/api-type-types";
 import type { ApiListingResponse, ApiNamedResource } from "$lib/types/api-types";
 import { HttpService } from "./http.service";
 
@@ -15,11 +16,14 @@ export const ApiPokemon = {
 	getEggGroups: () => {
 		return HttpService.get<ApiListingResponse<ApiNamedResource>>(`${POKEAPI}egg-group`);
 	},
-	getSingleEggGroup: async (slug: string) => {
-		return HttpService.get<any>(`${POKEAPI}egg-group/${slug}`);
+	getSingleEggGroup: async <T>(slug: string) => {
+		return HttpService.get<T>(`${POKEAPI}egg-group/${slug}`);
 	},
-	getPokedexByRegion: async (slug: string) => {
-		return HttpService.get<any>(`${POKEAPI}pokedex/${slug}`);
-	}
+	getPokedexByRegion: async <T>(slug: string) => {
+		return HttpService.get<T>(`${POKEAPI}pokedex/${slug}`);
+	},
+    getTypeBySlug: async (slug: string) => {
+        return HttpService.get<ApiTypeResponse>(`${POKEAPI}type/${slug}`);
+    }
 }
 export default ApiPokemon

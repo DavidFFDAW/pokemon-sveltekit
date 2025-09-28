@@ -5,7 +5,7 @@
 	import PokeType from '$lib/poke-type.svelte';
 
 	export let data;
-	let sprites = data.pokemon.sprites;
+	// let sprites = data.pokemon.sprites;
 
 	const handlePlayCry = () => {
 		const audioElement = document.querySelector('.poke-cry-audio-tag') as HTMLAudioElement | null;
@@ -238,8 +238,7 @@
 	.pokemon-wrapper.pokemon-single-page.pokemon-page .shiny-button {
 		position: absolute;
 		top: -25px;
-		left: 50%;
-		transform: translateX(-50%);
+		right: 30px;
 		background-color: #fff;
 		border: none;
 		border-radius: 50%;

@@ -10,6 +10,8 @@
 
 <a
 	href={`/pokemon/${pokemon.id}`}
+    title="Ver detalles de {pokemon.name}"
+    aria-label="Ver detalles de {pokemon.name}"
 	class="poke-card-item poke-card single-pokemon main-type-{pokemon.types[0].slug}"
 	class:shiny-pokemon={pokemon.is_shiny || forceShiny}
 >
@@ -190,6 +192,7 @@
 	}
 
 	.pokemon-types-container.poke-types {
+        margin-top: 12px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
