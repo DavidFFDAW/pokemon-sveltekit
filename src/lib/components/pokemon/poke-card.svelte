@@ -1,17 +1,18 @@
 <script lang="ts">
+	import { handleErrorImage } from '$lib/actions/image.error';
 	import PokeType from '$lib/poke-type.svelte';
 	import { type LocalPokemonInterface } from '$lib/services/local.pokemon.service';
 
 	export let width: number = 150;
 	export let pokemon: LocalPokemonInterface;
 	export let showTypes: boolean = true;
-    export let forceShiny: boolean = false;
+	export let forceShiny: boolean = false;
 </script>
 
 <a
 	href={`/pokemon/${pokemon.id}`}
-    title="Ver detalles de {pokemon.name}"
-    aria-label="Ver detalles de {pokemon.name}"
+	title="Ver detalles de {pokemon.name}"
+	aria-label="Ver detalles de {pokemon.name}"
 	class="poke-card-item poke-card single-pokemon main-type-{pokemon.types[0].slug}"
 	class:shiny-pokemon={pokemon.is_shiny || forceShiny}
 >
@@ -26,13 +27,15 @@
 				? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/${pokemon.id}.png`
 				: pokemon.image}
 			alt={pokemon.name}
+			data-id={pokemon.id}
+			use:handleErrorImage
 		/>
 	</div>
 
 	{#if showTypes}
 		<div class="poke-types types pokemon-types-container">
 			{#each pokemon.types as type}
-				<PokeType type={type.slug} text={type.name} />
+				<PokeType type={type.slug} text={type.name} anchor={false} />
 			{/each}
 		</div>
 	{/if}
@@ -41,7 +44,12 @@
 <style>
 	:root {
 		--line-color: #ffcb05;
-        --title-color: #000;
+		--title-color: #000;
+	}
+	.poke-card-item.poke-card {
+		min-width: 250px;
+		text-decoration: none;
+		color: inherit;
 	}
 	.main-type-fire {
 		--line-color: var(--fire);
@@ -81,15 +89,15 @@
 	}
 	.main-type-ghost {
 		--line-color: var(--ghost);
-        --title-color: #fff;
+		--title-color: #fff;
 	}
 	.main-type-dragon {
 		--line-color: var(--dragon);
-        --title-color: #fff;
+		--title-color: #fff;
 	}
 	.main-type-dark {
 		--line-color: var(--dark);
-        --title-color: #fff;
+		--title-color: #fff;
 	}
 	.main-type-steel {
 		--line-color: var(--steel);
@@ -101,10 +109,10 @@
 		--line-color: var(--normal);
 	}
 	.poke-card-item.poke-card.single-pokemon {
-        height: 100%;
+		height: 100%;
 		display: flex;
 		flex-direction: column;
-        justify-content: space-between;
+		justify-content: space-between;
 		align-items: center;
 		gap: 8px;
 		text-align: center;
@@ -118,13 +126,12 @@
 	}
 
 	.poke-card-item.poke-card.single-pokemon:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        transform: translateY(-4px);
-        transition: all 0.3s ease;
-        cursor: pointer;
-        opacity: 1;
-    }
-
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+		transform: translateY(-4px);
+		transition: all 0.3s ease;
+		cursor: pointer;
+		opacity: 1;
+	}
 
 	.poke-card-item.poke-card.single-pokemon::before {
 		content: '';
@@ -144,7 +151,7 @@
 		text-transform: capitalize;
 		font-weight: 700;
 		letter-spacing: 1px;
-        color: var(--title-color);
+		color: var(--title-color);
 		margin: 0;
 	}
 	.poke-card-item.poke-card.single-pokemon .title.poke-title.poke-name::after {
@@ -162,6 +169,7 @@
 	.poke-image-container {
 		position: relative;
 		width: 150px;
+		margin-top: 16px;
 		object-fit: cover;
 	}
 	.poke-image-container img.poke-image {
@@ -169,7 +177,7 @@
 		height: auto;
 		object-fit: cover;
 		filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
-        padding: 2px;
+		padding: 2px;
 	}
 	.poke-image-container.shiny::after {
 		content: '✨';
@@ -192,7 +200,7 @@
 	}
 
 	.pokemon-types-container.poke-types {
-        margin-top: 12px;
+		margin-top: 12px;
 		display: flex;
 		justify-content: center;
 		align-items: center;

@@ -1,19 +1,15 @@
 <script lang="ts">
-  export let data;
+	export let data;
 </script>
 
 <pre class="debug">
-  {JSON.stringify(data, null, 2)}
+  {JSON.stringify(data, null, 4)}
 </pre>
 
 <style>
 	.debug {
 		width: 100%;
 		height: 100%;
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 9999;
 		background: #212121;
 		padding: 10px;
 		max-height: 100dvh;

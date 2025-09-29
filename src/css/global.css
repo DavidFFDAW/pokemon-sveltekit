@@ -61,7 +61,7 @@ body {
 }
 
 
-/* body::before {
+body::before {
     content: "";
     position: fixed;
     top: 0;
@@ -70,8 +70,9 @@ body {
     height: 100%;
     transform: skewX(20deg);
     background: var(--red);
+    opacity: .6;
     z-index: -1;
-} */
+}
 
 img {
     max-width: 100%;
@@ -349,12 +350,13 @@ label.app-radio.radio-item input[type="checkbox"]:checked+.inner {
 
 .poke-list,
 ul.poke-list {
-    list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    max-width: 1200px;
+    margin: 0 auto;
+    list-style: none;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 15px;
     padding: 20px 10px;
-    margin: 0;
 }
 
 ul.poke-list li {

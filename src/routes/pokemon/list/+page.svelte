@@ -27,23 +27,17 @@
 			perPage={data.pokemons.limit}
 		/>
 
-		<ul class="list">
+		<ul class="poke-list">
 			{#each data.pokemons.list as poke}
-				<PokeCard pokemon={poke} showTypes={true} />
+				<li>
+					<PokeCard pokemon={poke} showTypes={true} />
+				</li>
 			{/each}
 		</ul>
 	</section>
 </div>
 
 <style>
-	.page {
-		padding: 50px 150px;
-	}
-    @media only screen and (max-width: 768px) {
-        .page {
-            padding: 25px;
-        }
-    }
 	.page header.header {
 		padding: 15px;
 		background-color: #efefef;
@@ -81,13 +75,4 @@
 		color: #333;
 		padding: 5px;
 	}
-
-	.list {
-        list-style: none;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 15px;
-        padding: 30px 160px;
-        align-items: stretch;
-    }
 </style>
