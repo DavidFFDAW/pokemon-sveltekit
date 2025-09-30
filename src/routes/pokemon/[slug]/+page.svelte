@@ -149,7 +149,7 @@
 			<!-- <PokeMove move={data.parsed_moves.parsedMovePool[0]} /> -->
 		</div>
 
-		<nav class="poke-page-navigation">
+		<!-- <nav class="poke-page-navigation">
 			<button type="button" on:click={pokeScrollToElement('.pokemon-stats-container')}
 				>Ver estadísticas</button
 			>
@@ -157,7 +157,7 @@
 			<button type="button" on:click={pokeScrollToElement('.poke-evolutions-block')}
 				>Ver evoluciones</button
 			>
-		</nav>
+		</nav> -->
 	{/if}
 </div>
 

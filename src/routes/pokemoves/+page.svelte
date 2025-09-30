@@ -41,6 +41,8 @@
 	$: moves = originalMoves.filter(
 		(m) => m.version === currentVersion && m.level_learning_method === currentLearningMethod
 	);
+
+	const learningMethods = [...new Set(originalMoves.map((m) => m.level_learning_method))];
 </script>
 
 <div class="pokemoves-page">
@@ -84,18 +86,20 @@
 		{/if}
 
 		<div class="w1 pokemon-move-learning-methods">
-			<label class="form-item app-radio radio-item">
-				<input
-					type="radio"
-					name="level_learning_method"
-					value="level-up"
-					bind:group={currentLearningMethod}
-				/>
-				<div class="inner">
-					<span>Por nivel</span>
-				</div>
-			</label>
-			<label class="form-item app-radio radio-item">
+			{#each learningMethods as method}
+				<label class="form-item app-radio radio-item">
+					<input
+						type="radio"
+						name="level_learning_method"
+						value={method}
+						bind:group={currentLearningMethod}
+					/>
+					<div class="inner">
+						<span>{method}</span>
+					</div>
+				</label>
+			{/each}
+			<!-- <label class="form-item app-radio radio-item">
 				<input
 					type="radio"
 					name="level_learning_method"
@@ -127,7 +131,7 @@
 				<div class="inner">
 					<span>Por huevo</span>
 				</div>
-			</label>
+			</label> -->
 		</div>
 
 		{#if moves.length > 0}

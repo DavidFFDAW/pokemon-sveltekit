@@ -2,9 +2,9 @@
   	export let stats: {[key: string]: number};
 </script>
 
-<div class="poke-stats">
+<div class="poke-stats poke-stats-list">
 	{#each Object.entries(stats) as [key, value]}
-		<div class="poke-stat">
+		<div class="poke-stat poke-stat-item-{key.toLowerCase()}">
 			<span class="poke-stat-name">{key.replace('-', ' ')}</span>
 			<div class="poke-stat-bar-background">
 				<div class="poke-stat-bar-fill" style="width: {Math.min(value, 255) / 255 * 100}%"></div>
@@ -15,12 +15,14 @@
 </div>
 
 <style>
-	.poke-stats {
-		display: flex;
-		flex-direction: column;
-		gap: 4px;
+	.poke-stats.poke-stats-list {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 6px;
 	}
-
+	.poke-stat.poke-stat-item-total {
+		grid-column: span 2;
+	}
 	.poke-stat {
 		display: flex;
 		flex-direction: column;
