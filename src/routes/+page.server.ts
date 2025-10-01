@@ -4,8 +4,5 @@ export async function load() {
 	const randomPokemon = LocalPokemon.getRandomPokemon();
 	return { 
         random_pokemon: randomPokemon,
-        metas: {
-            image: randomPokemon?.image,
-        }
     };
 }

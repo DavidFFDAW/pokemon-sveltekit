@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-	<title>Pokemon | {metas.title}</title>
+	<title>Dexplorer | {metas.title}</title>
 	<meta name="description" content={metas.description} />
 	<link rel="canonical" href={pageDatas.layout.canonical || ''} />
 	<link rel="alternate" hrefLang="es" href={pageDatas.layout.canonical || ''} />
