@@ -6,7 +6,6 @@
 </script>
 
 <div class="page">
-	<a href="/test">Test</a>
 	<header class="header">
 		<h1>Página búsqueda</h1>
 		<form method="get" action="/pokemon/list">

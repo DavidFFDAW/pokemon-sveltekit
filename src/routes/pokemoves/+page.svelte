@@ -135,7 +135,7 @@
 		</div>
 
 		{#if moves.length > 0}
-			<ul class="poke-moves-grid">
+			<ul class="grid poke-moves-grid responsive">
 				{#each moves as move}
 					<PokeMove {move} />
 				{/each}
@@ -154,7 +154,19 @@
 		border: 2px solid #ddd;
 		margin-bottom: 20px;
 		border-radius: 8px;
+		background-color: #fff;
 		overflow: hidden;
+	}
+
+	.real-moves-section select.form-input {
+		width: 100%;
+		padding: 10px 15px;
+		font-size: 1rem;
+		border: none;
+		outline: none;
+		border: 2px solid #ccc;
+		border-radius: 8px;
+		box-sizing: border-box;
 	}
 	header.pokemon-selector-list > input[type='search'] {
 		width: 100%;

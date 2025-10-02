@@ -3,7 +3,9 @@
 	import SearchInput from '$lib/components/search/search-input.svelte';
 	// import TypeIcon from '$lib/components/type-icons/type-icon.svelte';
 	import PokeType from '$lib/poke-type.svelte';
+	import PokeVariety from './poke-variety.svelte';
 
+	let openNavigation = false;
 	export let data;
 	// let sprites = data.pokemon.sprites;
 
@@ -90,43 +92,55 @@
 			<!-- <Debug data={data.typeRelations} /> -->
 
 			<div class="pokemon-type-relations">
-				<div class="pokemon-type-relation relation-strengths">
-					{#if data.typeRelations.strengths.length > 0}
-						<strong>Fortalezas (x2)</strong>
-
+				{#if data.typeRelations.strengths.length > 0}
+					<div class="pokemon-type-relation relation-strengths">
+						<strong>Fuerte contra</strong>
 						<div class="pokemon-type-relation-list">
 							{#each data.typeRelations.strengths as type}
 								<PokeType {type} translate />
 							{/each}
 						</div>
-					{/if}
-				</div>
+					</div>
+				{/if}
 
-				<div class="pokemon-type-relation relation-weaknesses">
-					{#if data.typeRelations.weaknesses.length > 0}
-						<strong>Debilidades (x2)</strong>
+				{#if data.typeRelations.weaknesses.length > 0}
+					<div class="pokemon-type-relation relation-weaknesses">
+						<strong>Le hacen daño</strong>
 						<div class="pokemon-type-relation-list">
 							{#each data.typeRelations.weaknesses as type}
 								<PokeType {type} translate />
 							{/each}
 						</div>
-					{/if}
-				</div>
+					</div>
+				{/if}
+				{#if data.typeRelations.resistances.length > 0}
+					<div class="pokemon-type-relation relation-resists">
+						<strong>Resiste</strong>
+						<div class="pokemon-type-relation-list">
+							{#each data.typeRelations.resistances as type}
+								<PokeType {type} translate />
+							{/each}
+						</div>
+					</div>
+				{/if}
+				{#if data.typeRelations.immunities.length > 0}
+					<div class="pokemon-type-relation relation-resists">
+						<strong>Inmune a</strong>
+						<div class="pokemon-type-relation-list">
+							{#each data.typeRelations.immunities as type}
+								<PokeType {type} translate />
+							{/each}
+						</div>
+					</div>
+				{/if}
 			</div>
 
 			{#if data.varieties.length > 0}
-				<div class="poke-forms-block">
+				<div class="poke-varieties-block">
 					<h2>Formas</h2>
 					<div class="poke-forms poke-grid">
 						{#each data.varieties as variety}
-							<a
-								href={`/pokemon/${variety.id}`}
-								class="poke-form-item"
-								title={`Ver ${variety.name}`}
-							>
-								<img src={variety.image} alt={variety.name} loading="lazy" />
-								<span class="poke-form-name capitalize">{variety.name}</span>
-							</a>
+							<PokeVariety variety={variety} specie={data.specie.name} />
 						{/each}
 					</div>
 				</div>
@@ -149,14 +163,16 @@
 			<!-- <PokeMove move={data.parsed_moves.parsedMovePool[0]} /> -->
 		</div>
 
-		<!-- <nav class="poke-page-navigation">
-			<button type="button" on:click={pokeScrollToElement('.pokemon-stats-container')}
-				>Ver estadísticas</button
-			>
-			<button type="button" on:click={pokeScrollToElement('.poke-forms-block')}>Ver formas</button>
-			<button type="button" on:click={pokeScrollToElement('.poke-evolutions-block')}
-				>Ver evoluciones</button
-			>
+		<!-- <nav class="poke-page-navigation" class:active={openNavigation}>
+			<div class="navigation-list">
+				<button type="button" on:click={pokeScrollToElement('.pokemon-stats-container')}
+					>Ver estadísticas</button
+				>
+				<button type="button" on:click={pokeScrollToElement('.poke-forms-block')}>Ver formas</button>
+				<button type="button" on:click={pokeScrollToElement('.poke-evolutions-block')}
+					>Ver evoluciones</button
+				>
+			</div>
 		</nav> -->
 	{/if}
 </div>
@@ -440,17 +456,6 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 		gap: 15px;
-	}
-	.poke-grid .poke-form-item {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
-		background-color: #fff;
-		border: 1px solid #eee;
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-		border-radius: 12px;
-		padding: 10px;
 	}
 
 	@media only screen and (min-width: 767px) {

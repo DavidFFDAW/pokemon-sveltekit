@@ -16,7 +16,7 @@
 	class="poke-card-item poke-card single-pokemon main-type-{pokemon.types[0].slug}"
 	class:shiny-pokemon={pokemon.is_shiny || forceShiny}
 >
-	<h3 class="title poke-title violet poke-name">{pokemon.name}</h3>
+	<h3 class="title poke-title violet poke-name">{pokemon.species}</h3>
 	<div class="poke-image-container" class:shiny={pokemon.is_shiny || forceShiny}>
 		<img
 			{width}

@@ -2,12 +2,14 @@ import pokemons from '$lib/data/pokemon.json';
 import { getShinyProbability } from '$lib/utils/general.utils';
 
 export interface LocalPokemonInterface {
-   id: number;
-   url: string;
-   name: string;
-   image: string | undefined | null;
-   types: { slug: string; name: string }[];
-   is_shiny?: boolean;
+	id: number;
+	url: string;
+	name: string;
+	image: string | undefined | null;
+	shiny: string | undefined | null;
+	species: string;
+   	types: { slug: string; name: string }[];
+   	is_shiny?: boolean;
 }
 
 export const LocalPokemon = {

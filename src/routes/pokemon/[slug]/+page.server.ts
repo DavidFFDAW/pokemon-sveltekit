@@ -29,8 +29,18 @@ export const load = async ({ params }) => {
 
 	const { pokemon: pokemonData, specie, evolution } = await getPokemon(pokemon);
 	const genus = specie.genera.find((g: any) => g.language.name === 'es');
-	const varietyNames = specie.varieties.map((v: any) => v.pokemon.name);
-	const varieties = specie.varieties.length > 1 ? pokemons.filter(p => varietyNames.includes(p.name)) : [];
+
+	// hay que cambiar la forma en que se envían las formas
+	const varieties = specie.varieties.map((v: any) => {
+		const id = v.pokemon.url.split('/').filter(Boolean).pop();
+		return {
+			id,
+			name: v.pokemon.name,
+			url: v.pokemon.url,
+			is_default: v.is_default,
+			image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${id}.png`
+		}
+	});
 
 	// Obtener las estadísticas
 	const stats = pokemonData.stats.reduce((carry: { [key: string]: number }, stat: any) => {

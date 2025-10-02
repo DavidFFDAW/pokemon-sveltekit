@@ -36,6 +36,7 @@
     --fairy: #ef70ef;
     --normal: #9fa19f;
     --stellar: #40b5a5;
+	--page-padding: 15px;
 }
 
 *,
@@ -46,6 +47,14 @@
     box-sizing: border-box;
     line-height: 1.2;
     transition: all 0.3s ease-in-out;
+}
+.notransition {
+	transition: none !important;
+}
+.text-overflow {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 html,
