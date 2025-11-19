@@ -10,12 +10,13 @@
 	}
 	export let variety: Variety;
 	export let specie: string;
+	let transformedVariety = variety.name.replace(specie, '').replace(/-/g, ' ').trim();
 </script>
 
 <a class="poke-variety" href="/pokemon/{variety.id}" title="{variety.name}" aria-label="{variety.name}">
 	<header class="header">
-		<h3 class="violet capitalize">{specie}</h3>
-		<small class="small-variety-name text-overflow">{variety.name.replace(specie, '').replace(/-/g, ' ').trim()}</small>
+		<h3 class="violet capitalize">{transformedVariety || specie}</h3>
+		<small class="small-variety-name text-overflow">{transformedVariety ? specie : 'Normal'}</small>
 	</header>
 	<img class="poke-variety-image" src="{variety.image}" alt="{variety.name}" width="135" height="135" loading="lazy" />
 	<img class="bg" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/f720bb6e-b303-4877-bffb-d61df0ab183f/d3b98cf-4fc5c76b-2a99-47fc-98b6-d7d4ee8d9d9f.png" alt="">

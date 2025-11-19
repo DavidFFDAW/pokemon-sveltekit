@@ -73,10 +73,14 @@
 				<div class="pokemon-name-types">
 					<h1 class="violet capitalize title poke-name">{data.pokemon.species.name}</h1>
 				</div>
-				<p>#{data.pokemon.id}</p>
-				{#if data.genus}
-					<small class="genera-genus">{data.genus.genus}</small>
-				{/if}
+
+				<div class="pokemon-number-and-genus">
+					<p class="title capitalize">#{data.pokemon.id} {data.pokemon.name}</p>
+					{#if data.genus}
+						<small class="genera-genus">{data.genus.genus}</small>
+					{/if}
+				</div>
+
 				<div class="pokemon-types poke-types">
 					{#each data.types as type}
 						<PokeType type={type.slug} text={type.name} />
@@ -138,7 +142,7 @@
 			{#if data.varieties.length > 0}
 				<div class="poke-varieties-block">
 					<h2>Formas</h2>
-					<div class="poke-forms poke-grid">
+					<div class="poke-forms poke-grid responsive responsive-grid">
 						{#each data.varieties as variety}
 							<PokeVariety variety={variety} specie={data.specie.name} />
 						{/each}
@@ -457,7 +461,13 @@
 		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 		gap: 15px;
 	}
-
+	
+	@media only screen and (max-width: 767px) {
+		.poke-grid {
+			grid-template-columns: repeat(1, 1fr);
+		}
+	}
+		
 	@media only screen and (min-width: 767px) {
 		.pokemon-wrapper.pokemon-single-page.pokemon-page .pokemon-datas-wrapper {
 			width: 60%;
