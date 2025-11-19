@@ -1,6 +1,7 @@
 <script lang="ts">
 	import PokeStats from '$lib/components/poke-stats.svelte';
 	import SearchInput from '$lib/components/search/search-input.svelte';
+	import PokeEvolutionStage from '$lib/poke-evolution-stage.svelte';
 	// import TypeIcon from '$lib/components/type-icons/type-icon.svelte';
 	import PokeType from '$lib/poke-type.svelte';
 	import PokeVariety from './poke-variety.svelte';
@@ -150,6 +151,16 @@
 				</div>
 			{/if}
 
+			<div class="pokemon-evolutions flex column gap-5">
+				{#each data.evolutions as evolution}
+					<div class="w1 pokemon-full-evolution-line flex">
+						{#each evolution as stage}
+							<PokeEvolutionStage item={stage} />
+						{/each}
+					</div>
+				{/each}
+			</div>
+
 			<div class="egg-group">
 				{#each data.specie.egg_groups as group}
 					<span class="egg-group-item badge">
@@ -182,6 +193,22 @@
 </div>
 
 <style>
+	.pokemon-evolutions.flex.column {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	} 
+	.w1.pokemon-full-evolution-line {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow-y: hidden;
+		overflow-x: auto;
+		padding: 10px 0;
+		gap: 20px;
+	}
 	.poke-page-navigation {
 		position: fixed;
 		bottom: 12px;

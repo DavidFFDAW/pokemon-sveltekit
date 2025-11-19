@@ -1,8 +1,9 @@
-import pokemons from '$lib/data/pokemon.json';
 import { PokeTypes } from '$lib/constant/types.js';
 import { getShinyProbability } from '$lib/utils/general.utils.js';
 import { getParsedPokemonMovePool } from '$lib/utils/moves.utils.js';
 import { getTypeEffectiveness } from '$lib/utils/types.utils.js';
+import type { EvolutionResponse } from '$lib/types/api-evolution-types.js';
+import { EvolutionService, transformEvolutionChain } from '$lib/services/evolution.service.js';
 
 const getPokemon = async (name: string) => {
 	const pokemonResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
@@ -19,7 +20,7 @@ const getPokemon = async (name: string) => {
 	return {
 		pokemon: pokemonData,
 		specie: pokemonSpeciesData,
-		evolution: await pokemonEvolutionResponse.json()
+		evolution: await pokemonEvolutionResponse.json() as EvolutionResponse
 	}
 }
 
@@ -67,7 +68,7 @@ export const load = async ({ params }) => {
 		types: types,
 		typeRelations: getTypeEffectiveness(types.map((t: any) => t.slug)),
 		parsed_moves: getParsedPokemonMovePool(pokemonData.moves),
-		evolution,
+		evolutions: EvolutionService.transformEvolutionChain(evolution),
 		metas: {
 			title: speciesName.charAt(0).toUpperCase() + speciesName.slice(1),
 			description: genus ? `Página de detalle del pokémon ${speciesName}, el ${genus.genus}` : `Página de detalle del pokémon ${speciesName}`,
