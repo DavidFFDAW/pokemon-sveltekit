@@ -63,6 +63,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+	scroll-behavior: smooth;
 }
 
 body {
@@ -386,4 +387,18 @@ ul.poke-list {
 ul.poke-list li {
     margin: 0;
     display: block;
+}
+
+.poke-section {
+	padding: 25px 0;
+	margin: 15px 0;
+}
+.poke-section h2 {
+	font-family: 'violet', sans-serif;
+	text-decoration: underline;
+	text-underline-offset: 8px;
+	font-size: 1.5rem;
+	text-transform: uppercase;
+	margin-bottom: 20px;
+	text-align: left;
 }

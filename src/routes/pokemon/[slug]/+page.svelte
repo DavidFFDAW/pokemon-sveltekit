@@ -96,99 +96,111 @@
 
 			<!-- <Debug data={data.typeRelations} /> -->
 
-			<div class="pokemon-type-relations">
-				{#if data.typeRelations.strengths.length > 0}
-					<div class="pokemon-type-relation relation-strengths">
-						<strong>Fuerte contra</strong>
-						<div class="pokemon-type-relation-list">
-							{#each data.typeRelations.strengths as type}
-								<PokeType {type} translate />
-							{/each}
-						</div>
-					</div>
-				{/if}
+			<section class="poke-section" id="pokemon-type-relations-section">
+				<h2>Relaciones de tipos</h2>
 
-				{#if data.typeRelations.weaknesses.length > 0}
-					<div class="pokemon-type-relation relation-weaknesses">
-						<strong>Le hacen daño</strong>
-						<div class="pokemon-type-relation-list">
-							{#each data.typeRelations.weaknesses as type}
-								<PokeType {type} translate />
-							{/each}
+				<div class="pokemon-type-relations">
+					{#if data.typeRelations.strengths.length > 0}
+						<div class="pokemon-type-relation relation-strengths">
+							<strong>Fuerte contra</strong>
+							<div class="pokemon-type-relation-list">
+								{#each data.typeRelations.strengths as type}
+									<PokeType {type} translate />
+								{/each}
+							</div>
 						</div>
-					</div>
-				{/if}
-				{#if data.typeRelations.resistances.length > 0}
-					<div class="pokemon-type-relation relation-resists">
-						<strong>Resiste</strong>
-						<div class="pokemon-type-relation-list">
-							{#each data.typeRelations.resistances as type}
-								<PokeType {type} translate />
-							{/each}
+					{/if}
+
+					{#if data.typeRelations.weaknesses.length > 0}
+						<div class="pokemon-type-relation relation-weaknesses">
+							<strong>Le hacen daño</strong>
+							<div class="pokemon-type-relation-list">
+								{#each data.typeRelations.weaknesses as type}
+									<PokeType {type} translate />
+								{/each}
+							</div>
 						</div>
-					</div>
-				{/if}
-				{#if data.typeRelations.immunities.length > 0}
-					<div class="pokemon-type-relation relation-resists">
-						<strong>Inmune a</strong>
-						<div class="pokemon-type-relation-list">
-							{#each data.typeRelations.immunities as type}
-								<PokeType {type} translate />
-							{/each}
+					{/if}
+					{#if data.typeRelations.resistances.length > 0}
+						<div class="pokemon-type-relation relation-resists">
+							<strong>Resiste</strong>
+							<div class="pokemon-type-relation-list">
+								{#each data.typeRelations.resistances as type}
+									<PokeType {type} translate />
+								{/each}
+							</div>
 						</div>
+					{/if}
+					{#if data.typeRelations.immunities.length > 0}
+						<div class="pokemon-type-relation relation-resists">
+							<strong>Inmune a</strong>
+							<div class="pokemon-type-relation-list">
+								{#each data.typeRelations.immunities as type}
+									<PokeType {type} translate />
+								{/each}
+							</div>
+						</div>
+						{/if}
 					</div>
-				{/if}
-			</div>
+			</section>
 
 			{#if data.varieties.length > 0}
-				<div class="poke-varieties-block">
+				<section class="poke-varieties-block poke-section">
 					<h2>Formas</h2>
+
 					<div class="poke-forms poke-grid responsive responsive-grid">
 						{#each data.varieties as variety}
 							<PokeVariety variety={variety} specie={data.specie.name} />
 						{/each}
 					</div>
-				</div>
+				</section>
 			{/if}
 
-			<div class="pokemon-evolutions flex column gap-5">
-				{#each data.evolutions as evolution}
-					<div class="w1 pokemon-full-evolution-line flex">
-						{#each evolution as stage}
-							<PokeEvolutionStage item={stage} />
-						{/each}
-					</div>
-				{/each}
-			</div>
+			<section class="poke-evolutions poke-section" id="poke-evolutions-section">
+				<h2>Evoluciones</h2>
 
-			<div class="egg-group">
+				<div class="pokemon-evolutions flex column gap-5">
+					{#each data.evolutions as evolution}
+						<div class="poke-evolutions-wrapper">
+							<div class="w1 pokemon-full-evolution-line flex">
+								{#each evolution as stage}
+								<PokeEvolutionStage item={stage} />
+								{/each}
+							</div>
+						</div>
+					{/each}
+				</div>
+			</section>
+
+			<section class="egg-group poke-section" id="egg-group-section">
+				<h2>Grupos huevo</h2>
+
 				{#each data.specie.egg_groups as group}
 					<span class="egg-group-item badge">
 						{group.name}
 					</span>
 				{/each}
-			</div>
+			</section>
 
-			<div class="pokemon-stats-container">
+			<section class="pokemon-stats-container poke-section" id="pokemon-stats-section">
 				<h2>Estadísticas</h2>
 				<PokeStats stats={data.stats} />
-			</div>
+			</section>
 
 			<!-- <Debug data={data.parsed_moves} /> -->
 			<!-- <PokeMove move={data.parsed_moves.parsedMovePool[0]} /> -->
 		</div>
 
-		<!-- <nav class="poke-page-navigation" class:active={openNavigation}>
+		<nav class="poke-page-navigation" class:active={openNavigation}>
 			<div class="navigation-list">
-				<button type="button" on:click={pokeScrollToElement('.pokemon-stats-container')}
-					>Ver estadísticas</button
-				>
-				<button type="button" on:click={pokeScrollToElement('.poke-forms-block')}>Ver formas</button>
-				<button type="button" on:click={pokeScrollToElement('.poke-evolutions-block')}
-					>Ver evoluciones</button
-				>
+				<button type="button" on:click={pokeScrollToElement('.pokemon-stats-container')}>
+					Ver estadísticas
+				</button>
+				<button type="button" on:click={pokeScrollToElement('#poke-evolutions-section')}>
+					Ver evoluciones
+				</button>
 			</div>
-		</nav> -->
+		</nav>
 	{/if}
 </div>
 
@@ -199,13 +211,17 @@
 		flex-direction: column;
 		gap: 20px;
 	} 
+	.poke-evolutions-wrapper {
+		width: 100%;
+		max-width: 100%;
+		overflow-x: auto;
+		white-space: nowrap;
+	}
 	.w1.pokemon-full-evolution-line {
 		width: 100%;
 		display: flex;
 		justify-content: center;
-		align-items: center;
-		overflow-y: hidden;
-		overflow-x: auto;
+		align-items: flex-start;
 		padding: 10px 0;
 		gap: 20px;
 	}

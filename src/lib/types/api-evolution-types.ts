@@ -14,26 +14,24 @@ export interface EvolutionChain {
 }
 
 export interface EvolutionDetail {
-  base_form_id: any
-  gender: any
-  held_item: any
-  item: any
-  known_move: any
-  known_move_type: any
-  location: any
-  min_affection: any
-  min_beauty: any
-  min_happiness: any
-  min_level: number
-  needs_overworld_rain: boolean
-  party_species: any
-  party_type: any
-  region_id: any
-  relative_physical_stats: any
-  time_of_day: string
-  trade_species: any
-  trigger: ApiNamedResource
-  turn_upside_down: boolean
+	gender: number;
+	held_item: ApiNamedResource;
+	item: ApiNamedResource;
+	known_move: ApiNamedResource;
+	known_move_type: ApiNamedResource;
+	location: ApiNamedResource;
+	min_affection: number;
+	min_beauty: number;
+	min_happiness: number;
+	min_level: number;
+	needs_overworld_rain: boolean;
+	party_species: ApiNamedResource;
+	party_type: ApiNamedResource;
+	relative_physical_stats: number;
+	time_of_day: string;
+	trade_species: ApiNamedResource;
+	trigger: ApiNamedResource
+	turn_upside_down: boolean
 }
 
 export interface ParsedEvolutionItem {
