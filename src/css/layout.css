@@ -2,6 +2,28 @@
 	display: grid;
 }
 
+.flex {
+	display: flex;
+}
+.flex.column {
+	flex-direction: column;
+}
+.flex.wrap {
+	flex-wrap: wrap;
+}
+.gap-5 {
+	gap: 5px;
+}
+.pointer {
+	cursor: pointer;
+}
+
+.horizontal-scrollable {
+	overflow-x: visible;
+	white-space: nowrap;
+	scrollbar-width: thin;
+}
+
 @media (min-width: 767px) {
 	.responsive {
 		grid-template-columns: repeat(1, 1fr);

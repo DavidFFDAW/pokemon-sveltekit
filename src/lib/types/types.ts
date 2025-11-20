@@ -25,3 +25,10 @@ export interface PokeStats {
 	speed: number;
 	total: number;
 }
+
+export interface PokeAbility {
+	id: number;
+	name: string;
+	en: string;
+	effect: string;
+}

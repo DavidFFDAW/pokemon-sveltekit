@@ -4,6 +4,8 @@ import { getParsedPokemonMovePool } from '$lib/utils/moves.utils.js';
 import { getTypeEffectiveness } from '$lib/utils/types.utils.js';
 import type { EvolutionResponse } from '$lib/types/api-evolution-types.js';
 import { EvolutionService, transformEvolutionChain } from '$lib/services/evolution.service.js';
+import abilities from '$lib/data/abilities.json';
+import type { PokeAbility } from '$lib/types/types.js';
 
 const getPokemon = async (name: string) => {
 	const pokemonResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
@@ -57,12 +59,18 @@ export const load = async ({ params }) => {
 		name: PokeTypes[t.type.name] || t.type.name
 	}));
 
+	const pAbilities = pokemonData.abilities.map((ability: any) => {
+		const currentAbility = ability.ability.name as string;
+		return (abilities as any)[currentAbility] as PokeAbility;
+	}) as PokeAbility[];
+
 	return {
 		stats,
 		labels,
 		genus,
 		specie,
 		varieties,
+		abilities: pAbilities,
 		pokemon: pokemonData,
 		shiny: getShinyProbability(),
 		types: types,

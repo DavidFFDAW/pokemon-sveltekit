@@ -56,7 +56,12 @@
 			>
 				<span>✨</span>
 			</button>
-			<div class="pokemon-main-datas">
+
+			<div class="pokemon-name-types">
+				<h1 class="violet capitalize title poke-name">{data.pokemon.species.name}</h1>
+			</div>
+
+			<section class="pokemon-main-datas poke-section">
 				<img
 					title="{data.pokemon.name} normal"
 					draggable="false"
@@ -71,9 +76,6 @@
 					src={data.pokemon.sprites.other.home.front_shiny}
 					alt="{data.pokemon.name} shiny"
 				/>
-				<div class="pokemon-name-types">
-					<h1 class="violet capitalize title poke-name">{data.pokemon.species.name}</h1>
-				</div>
 
 				<div class="pokemon-number-and-genus">
 					<p class="title capitalize">#{data.pokemon.id} {data.pokemon.name}</p>
@@ -92,9 +94,32 @@
 					<audio src={data.pokemon.cries.latest} class="poke-cry-audio-tag" autoplay></audio>
 					<span class="poke-cry-text">¡Escuchar!</span>
 				</button>
-			</div>
+			</section>
 
 			<!-- <Debug data={data.typeRelations} /> -->
+
+			<section class="pokemon-main-datas poke-section">
+				<h2>Habilidades</h2>
+
+				<div class="pokemon-abilities flex column gap-5">
+					{#each data.abilities as ability}
+						<span class="pokemon-ability badge pointer">{ability.name}</span>
+						<small>{ability.effect}</small>
+					{/each}
+				</div>
+			</section>
+
+			<section class="egg-group poke-section" id="egg-group-section">
+				<h2>Grupos huevo</h2>
+
+				<div class="flex gap-5">
+					{#each data.specie.egg_groups as group}
+						<span class="egg-group-item badge pointer">
+							{group.name}
+						</span>
+					{/each}
+				</div>
+			</section>
 
 			<section class="poke-section" id="pokemon-type-relations-section">
 				<h2>Relaciones de tipos</h2>
@@ -140,8 +165,8 @@
 								{/each}
 							</div>
 						</div>
-						{/if}
-					</div>
+					{/if}
+				</div>
 			</section>
 
 			{#if data.varieties.length > 0}
@@ -150,7 +175,7 @@
 
 					<div class="poke-forms poke-grid responsive responsive-grid">
 						{#each data.varieties as variety}
-							<PokeVariety variety={variety} specie={data.specie.name} />
+							<PokeVariety {variety} specie={data.specie.name} />
 						{/each}
 					</div>
 				</section>
@@ -161,25 +186,15 @@
 
 				<div class="pokemon-evolutions flex column gap-5">
 					{#each data.evolutions as evolution}
-						<div class="poke-evolutions-wrapper">
+						<div class="poke-evolutions-wrapper horizontal-scrollable">
 							<div class="w1 pokemon-full-evolution-line flex">
 								{#each evolution as stage}
-								<PokeEvolutionStage item={stage} />
+									<PokeEvolutionStage item={stage} />
 								{/each}
 							</div>
 						</div>
 					{/each}
 				</div>
-			</section>
-
-			<section class="egg-group poke-section" id="egg-group-section">
-				<h2>Grupos huevo</h2>
-
-				{#each data.specie.egg_groups as group}
-					<span class="egg-group-item badge">
-						{group.name}
-					</span>
-				{/each}
 			</section>
 
 			<section class="pokemon-stats-container poke-section" id="pokemon-stats-section">
@@ -210,7 +225,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
-	} 
+	}
 	.poke-evolutions-wrapper {
 		width: 100%;
 		max-width: 100%;
@@ -220,10 +235,23 @@
 	.w1.pokemon-full-evolution-line {
 		width: 100%;
 		display: flex;
+		position: relative;
 		justify-content: center;
 		align-items: flex-start;
 		padding: 10px 0;
 		gap: 20px;
+	}
+	.w1.pokemon-full-evolution-line::after {
+		content: '';
+		position: absolute;
+		top: 45px;
+		left: 0;
+		width: 100%;
+		height: 50px;
+		background-color: var(--red);
+		border-radius: 50px;
+		opacity: 0.2;
+		z-index: -1;
 	}
 	.poke-page-navigation {
 		position: fixed;
@@ -416,7 +444,7 @@
 	.pokemon-name-types h1 {
 		margin: 0;
 		padding: 0;
-		margin-top: 12px;
+		/* margin-top: 12px; */
 	}
 
 	.pokemon-wrapper.pokemon-single-page.pokemon-page .pokemon-page-search-container {
@@ -504,13 +532,19 @@
 		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 		gap: 15px;
 	}
-	
+
 	@media only screen and (max-width: 767px) {
 		.poke-grid {
 			grid-template-columns: repeat(1, 1fr);
 		}
+		.w1.pokemon-full-evolution-line {
+			gap: 6px;
+		}
+		.w1.pokemon-full-evolution-line::after {
+			top: 25px;
+		}
 	}
-		
+
 	@media only screen and (min-width: 767px) {
 		.pokemon-wrapper.pokemon-single-page.pokemon-page .pokemon-datas-wrapper {
 			width: 60%;

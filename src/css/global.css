@@ -402,3 +402,19 @@ ul.poke-list li {
 	margin-bottom: 20px;
 	text-align: left;
 }
+
+.badge {
+	display: inline-block;
+	padding: 5px 14px;
+	border-radius: 12px;
+	background-color: #eee;
+	color: #333;
+	font-size: 0.9rem;
+	font-weight: 400;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+}
+.badge:hover {
+	background-color: var(--red);
+	color: #fff;
+}

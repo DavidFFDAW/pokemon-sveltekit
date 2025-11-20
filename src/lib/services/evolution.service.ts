@@ -25,24 +25,6 @@ export interface EvolutionChainRaw {
 }
 export type EvolutionRoute = EvolutionRouteItem[];
 
-
-export const EVOLUTION_TRIGGERS = {
-	level_up: 'Nivel',
-	use_item: 'Usar',
-	trade: 'Intercambiar',
-	shed: 'Mudar',
-	spin: 'Girar',
-	"tower-of-darkness": 'Torre de la Oscuridad',
-	"tower-of-waters": 'Torre de las Aguas',
-	"three-critical-hits": 'Tres golpes críticos',
-	"take-damage": 'Recibir daño',
-	other: 'Otro',
-	"agile-style-move": 'Movimiento estilo ágil',
-	"strong-style-move": 'Movimiento estilo fuerte',
-	"recoil-damage": 'Daño por retroceso',
-}
-
-
 function spriteUrlFromId(id: number): string {
 	// Puedes cambiar a otro set de sprites si quieres
 	return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
@@ -183,7 +165,7 @@ function describeEvolutionMethod(m: EvolutionDetail) {
   // --- DETALLES ADICIONALES ---
   const extras: string[] = [];
   if (m.time_of_day) extras.push(`${m.time_of_day}`);
-  if (m.gender) extras.push(`Género requerido: ${m.gender}`);
+  if (m.gender) extras.push(`${m.gender === 1 ? "♀" : "♂"}`);
   if (m.location) extras.push(`Lugar: ${m.location.name}`);
 
   if (m.min_happiness) extras.push(`Amistad ≥ ${m.min_happiness}`);

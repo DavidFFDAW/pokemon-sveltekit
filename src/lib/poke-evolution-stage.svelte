@@ -29,6 +29,7 @@ import { EvolutionService, type EvolutionRouteItem } from "./services/evolution.
 
 <style>
 	.poke-evolution-stage {
+		min-width: 100px;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
@@ -37,30 +38,41 @@ import { EvolutionService, type EvolutionRouteItem } from "./services/evolution.
 	}
 
 	.poke-evolution-stage-image {
+		width: 100%;
+		min-width: 120px;
+		max-width: 120px;
+		height: auto;
 		padding: 10px;
 		border-radius: 50%;
 		border: 2px solid var(--red);
-		background: transparent;
+		background: #fff;
 		box-shadow: 0 1px 15px 2px rgba(0, 0, 0, 0.2);
 	}
-
+	
 	.poke-evolution-stage-name {
 		margin-top: 0.5rem;
 		font-weight: 600;
 		font-size: 1rem;
 		text-transform: capitalize;
 	}
-
+	
 	.poke-evolution-methods {
 		margin-top: 0.25rem;
 		display: flex;
 		flex-direction: column;
 		gap: 5px;
-		max-width: 120px;
+		max-width: 140px;
 	}
 	.poke-evolution-methods small.single-evolution-method-line {
 		display: block;
 		font-size: 0.75rem;
 		white-space: normal;
+	}
+	
+	@media only screen and (max-width: 768px) {
+		.poke-evolution-stage-image {
+			min-width: 80px;
+			max-width: 80px;
+		}
 	}
 </style>
