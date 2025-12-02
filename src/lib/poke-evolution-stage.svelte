@@ -1,6 +1,5 @@
 <script lang="ts">
-	import Debug from "./debug.svelte";
-import { EvolutionService, type EvolutionRouteItem } from "./services/evolution.service";
+	import { EvolutionService, type EvolutionRouteItem } from "./services/evolution.service";
   	export let item: EvolutionRouteItem;
 	const parsedMethods = item.methods.map(method => EvolutionService.describeEvolutionMethod(method));
 </script>
