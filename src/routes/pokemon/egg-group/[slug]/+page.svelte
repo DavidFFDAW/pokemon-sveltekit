@@ -30,7 +30,7 @@
 		list-style: none;
 		padding: 0;
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 		gap: 12px;
 	}
 	.egg-group-page.single-egg-group-page ul li {

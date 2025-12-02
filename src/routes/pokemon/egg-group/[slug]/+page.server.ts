@@ -7,7 +7,7 @@ export async function load({ params }) {
 	const { slug } = params;
 	if (!slug) return redirect(302, '/egg-group');
 
-	const response = await ApiPokemon.getSingleEggGroup(slug);
+	const response = await ApiPokemon.getSingleEggGroup<any>(slug);
 	if (!response.ok) return redirect(302, '/egg-group');
 
 	const pokemonsInGroup = response.data.pokemon_species.map((poke: ApiNamedResource) => poke.name);

@@ -2,6 +2,7 @@
 	import MetaTags from '$lib/components/seo/meta-tags.svelte';
 	import { navigating, page } from '$app/state';
 	import Loader from '$lib/components/loader.svelte';
+	import '../css/layout.css';
 	import '../css/global.css';
 
 	export let data;

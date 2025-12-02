@@ -2,12 +2,14 @@
 	import PokeStats from '$lib/components/poke-stats.svelte';
 	import SearchInput from '$lib/components/search/search-input.svelte';
 	import PokeEvolutionStage from '$lib/poke-evolution-stage.svelte';
+	import PokeMove from '$lib/poke-move.svelte';
 	// import TypeIcon from '$lib/components/type-icons/type-icon.svelte';
 	import PokeType from '$lib/poke-type.svelte';
+	import MoveVisor from './move-visor.svelte';
 	import PokeVariety from './poke-variety.svelte';
 
-	let openNavigation = false;
-	export let data;
+	let openNavigation = $state(false);
+	let { data } = $props();
 	// let sprites = data.pokemon.sprites;
 
 	const handlePlayCry = () => {
@@ -52,7 +54,7 @@
 				type="button"
 				class="shiny-button"
 				class:shiny={data.shiny}
-				on:click={() => (data.shiny = !data.shiny)}
+				onclick={() => (data.shiny = !data.shiny)}
 			>
 				<span>✨</span>
 			</button>
@@ -90,7 +92,7 @@
 					{/each}
 				</div>
 
-				<button type="button" class="pokemon-cry-button" on:click={handlePlayCry}>
+				<button type="button" class="pokemon-cry-button" onclick={handlePlayCry}>
 					<audio src={data.pokemon.cries.latest} class="poke-cry-audio-tag" autoplay></audio>
 					<span class="poke-cry-text">¡Escuchar!</span>
 				</button>
@@ -197,21 +199,24 @@
 				</div>
 			</section>
 
+			<section class="poke-section">
+				<h2>Movimientos</h2>
+				
+				<MoveVisor parsed_moves={data.parsed_moves} />
+			</section>
+
 			<section class="pokemon-stats-container poke-section" id="pokemon-stats-section">
 				<h2>Estadísticas</h2>
 				<PokeStats stats={data.stats} />
 			</section>
-
-			<!-- <Debug data={data.parsed_moves} /> -->
-			<!-- <PokeMove move={data.parsed_moves.parsedMovePool[0]} /> -->
 		</div>
 
 		<nav class="poke-page-navigation" class:active={openNavigation}>
 			<div class="navigation-list">
-				<button type="button" on:click={pokeScrollToElement('.pokemon-stats-container')}>
+				<button type="button" onclick={pokeScrollToElement('.pokemon-stats-container')}>
 					Ver estadísticas
 				</button>
-				<button type="button" on:click={pokeScrollToElement('#poke-evolutions-section')}>
+				<button type="button" onclick={pokeScrollToElement('#poke-evolutions-section')}>
 					Ver evoluciones
 				</button>
 			</div>

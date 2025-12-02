@@ -1,3 +1,4 @@
+import { TransformedPokemonMovePool } from './../types/types';
 import moves from '$lib/data/moves.json';
 import type { ApiPokeMoves } from '$lib/types/api-types';
 import type { ParsedPokemonMove } from '$lib/types/types';
@@ -17,13 +18,22 @@ export const getMoveDetails = (move: string) => {
 	if (foundMove) return foundMove;
 	return base;
 }
-
-export const getParsedPokemonMovePool = (pokemonMovePool: ApiPokeMoves[]) => {
+export const getParsedPokemonMovePool = (pokemonMovePool: ApiPokeMoves[]): TransformedPokemonMovePool => {
 	const versions = Array.from(pokemonMovePool.reduce((acc, move) => {
 		const { version_group_details } = move;
 
 		version_group_details.forEach((detail) => {
 			acc.add(detail.version_group.name);
+		});
+
+		return acc;
+	}, new Set()));
+	
+	const learning_methods = Array.from(pokemonMovePool.reduce((acc, move) => {
+		const { version_group_details } = move;
+
+		version_group_details.forEach((detail) => {
+			acc.add(detail.move_learn_method.name);
 		});
 
 		return acc;
@@ -53,5 +63,5 @@ export const getParsedPokemonMovePool = (pokemonMovePool: ApiPokeMoves[]) => {
 			)
 	);
 
-	return { versions, moves: parsedMovePool };
+	return { versions, moves: parsedMovePool, learning_methods };
 };

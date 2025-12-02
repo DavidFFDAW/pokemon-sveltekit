@@ -16,6 +16,12 @@ export interface ParsedPokemonMove {
 	level_learning_method: string;
 }
 
+export interface TransformedPokemonMovePool {
+	versions: string[];
+	moves: ParsedPokemonMove[];
+	learning_methods: string[];
+}
+
 export interface PokeStats {
 	hp: number;
 	attack: number;

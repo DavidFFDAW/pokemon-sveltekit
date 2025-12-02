@@ -3,7 +3,7 @@ import { getShinyProbability } from '$lib/utils/general.utils.js';
 import { getParsedPokemonMovePool } from '$lib/utils/moves.utils.js';
 import { getTypeEffectiveness } from '$lib/utils/types.utils.js';
 import type { EvolutionResponse } from '$lib/types/api-evolution-types.js';
-import { EvolutionService, transformEvolutionChain } from '$lib/services/evolution.service.js';
+import { EvolutionService } from '$lib/services/evolution.service.js';
 import abilities from '$lib/data/abilities.json';
 import type { PokeAbility } from '$lib/types/types.js';
 
