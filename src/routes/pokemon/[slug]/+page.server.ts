@@ -61,7 +61,11 @@ export const load = async ({ params }) => {
 
 	const pAbilities = pokemonData.abilities.map((ability: any) => {
 		const currentAbility = ability.ability.name as string;
-		return (abilities as any)[currentAbility] as PokeAbility;
+		const isHiddenAbility = ability.is_hidden as boolean;
+		return {
+			...(abilities as any)[currentAbility] as PokeAbility,
+			is_hidden: isHiddenAbility
+		};
 	}) as PokeAbility[];
 
 	return {

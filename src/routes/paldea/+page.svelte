@@ -11,8 +11,8 @@
 </script>
 
 <section class="page-galar-dex">
-	<header class="page-header">
-		<h1>Pokedex de Paldea</h1>
+	<header class="w1 page-header">
+		<h1>Pokedex de Paldea ({data.pokemons.length})</h1>
 	</header>
 
 	<PokemonTypeFilters bind:currentType />

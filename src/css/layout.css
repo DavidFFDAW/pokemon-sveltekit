@@ -11,6 +11,18 @@
 .flex.wrap {
 	flex-wrap: wrap;
 }
+.gap {
+	gap: 35px;
+}
+.gap-medium {
+	gap: 20px;
+}
+.gap-small {
+	gap: 15px;
+}
+.gap-smaller {
+	gap: 10px;
+}
 .gap-5 {
 	gap: 5px;
 }

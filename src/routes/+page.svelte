@@ -5,15 +5,15 @@
 </script>
 
 <div class="poke-home">
-	<div class="poke-animated-container">
+	<a class="poke-animated-container" href="/pokemon/{data.random_pokemon.id}">
 		<img
-			class="charizard-animation"
+			class="pokemon-image pokemon-animation"
 			src={data.random_pokemon.image}
 			alt={data.random_pokemon.name}
 			draggable="false"
 			loading="lazy"
 		/>
-	</div>
+	</a>
 
 	<div class="poke-home-content">
 		<h1 class="tcenter">¡Bienvenido a la Pokedex!</h1>
@@ -80,7 +80,7 @@
 		transform-origin: top left;
 		z-index: 1;
 	}
-	.charizard-animation {
+	.pokemon-image.pokemon-animation {
 		width: 100%;
 		min-width: 500px;
 		object-fit: cover;
@@ -101,10 +101,15 @@
 
 	@media screen and (max-width: 600px) {
 		.poke-home {
-			justify-content: flex-start;
+			justify-content: space-between;
 			align-items: flex-start;
 			flex-direction: column;
 		}
+		.poke-home-content {
+			padding: 0 15px;
+			padding-bottom: 80px;
+		}
+
 		.poke-animated-container {
 			width: 100%;
 			height: 50%;
@@ -117,7 +122,7 @@
 			transform-origin: top left;
 			z-index: 0;
 		}
-		.charizard-animation {
+		.pokemon-image.pokemon-animation {
 			width: 100%;
 			min-width: 300px;
 			object-fit: cover;

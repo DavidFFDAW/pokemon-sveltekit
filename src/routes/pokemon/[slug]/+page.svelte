@@ -6,10 +6,12 @@
 	// import TypeIcon from '$lib/components/type-icons/type-icon.svelte';
 	import PokeType from '$lib/poke-type.svelte';
 	import MoveVisor from './move-visor.svelte';
+	import PokeAbility from './poke-ability.svelte';
 	import PokeVariety from './poke-variety.svelte';
 
 	let openNavigation = $state(false);
 	let { data } = $props();
+	let shiny = $state<boolean>(data.shiny);
 	// let sprites = data.pokemon.sprites;
 
 	const handlePlayCry = () => {
@@ -27,11 +29,15 @@
 		const element = document.querySelector(selector);
 		if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	};
+
+	const toggleShiny = () => {
+		shiny = !shiny;
+	};
 </script>
 
 <div
 	class="pokemon-wrapper pokemon-single-page pokemon-page type-{data.types[0].slug} light-theme"
-	class:shiny={data.shiny}
+	class:shiny={shiny}
 	class:legendary={data.specie.is_legendary}
 	class:mythical={data.specie.is_mythical}
 	class:ultra-beast={data.specie.is_ultra_beast}
@@ -53,8 +59,8 @@
 			<button
 				type="button"
 				class="shiny-button"
-				class:shiny={data.shiny}
-				onclick={() => (data.shiny = !data.shiny)}
+				class:shiny={shiny}
+				onclick={toggleShiny}
 			>
 				<span>✨</span>
 			</button>
@@ -103,10 +109,13 @@
 			<section class="pokemon-main-datas poke-section">
 				<h2>Habilidades</h2>
 
-				<div class="pokemon-abilities flex column gap-5">
+				<div class="pokemon-abilities flex column gap-small">
 					{#each data.abilities as ability}
-						<span class="pokemon-ability badge pointer">{ability.name}</span>
-						<small>{ability.effect}</small>
+						<PokeAbility
+							title={ability.name}
+							effect={ability.effect}
+							hidden={ability.is_hidden}
+						/>
 					{/each}
 				</div>
 			</section>
@@ -116,9 +125,9 @@
 
 				<div class="flex gap-5">
 					{#each data.specie.egg_groups as group}
-						<span class="egg-group-item badge pointer">
+						<a href="/pokemon/egg-group/{group.name}" class="egg-group-item badge pointer">
 							{group.name}
-						</span>
+						</a>
 					{/each}
 				</div>
 			</section>

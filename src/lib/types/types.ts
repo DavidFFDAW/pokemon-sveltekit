@@ -37,4 +37,5 @@ export interface PokeAbility {
 	name: string;
 	en: string;
 	effect: string;
+	is_hidden?: boolean;
 }
