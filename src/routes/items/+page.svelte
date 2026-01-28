@@ -26,10 +26,9 @@
 		<ul class="items-list">
 			{#each data.pokeitems as item}
 				<li class="item-card" id="item-{item.id}">
-					<a href={`#/items/${item.id}`} class="block" aria-label={item.name}>
+					<a href={`/items/#`} class="block" aria-label={item.name}>
 						<img src={item.image} alt={item.name} width="40" height="40" draggable="false" />
 						<h2>{item.name}</h2>
-						<small>#{item.id}</small>
 					</a>
 				</li>
 			{/each}
@@ -59,14 +58,14 @@
 		height: 100%;
 		min-height: 180px;
 		text-align: center;
-		border: 1px solid #ddd;
+		border: 1px solid var(--red);
 		border-radius: 8px;
 		padding: 15px;
 		background-color: #fff;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 		position: relative;
 		overflow: hidden;
-        cursor: pointer;
+		cursor: pointer;
 	}
 	ul.items-list li.item-card h2 {
 		position: relative;
@@ -84,19 +83,6 @@
 		align-items: center;
 		gap: 8px;
 	}
-	/* ul.items-list li.item-card::after {
-		content: '';
-		position: absolute;
-		bottom: -50px;
-		right: -140px;
-		width: 110%;
-		height: 150px;
-		transform: rotate(-35deg);
-		background: var(--red);
-		pointer-events: none;
-		opacity: 0.7;
-		z-index: 0;
-	} */
 	ul.items-list li.item-card::before {
 		content: '';
 		position: absolute;
@@ -108,18 +94,9 @@
 		opacity: 0.8;
 		z-index: 0;
 	}
-
-	ul.items-list li.item-card small {
-		position: relative;
-		padding: 5px 10px;
-		font-size: 0.85rem;
-		color: #555;
-		background-color: #f9f9f9;
-		border-radius: 4px;
-		z-index: 1;
-	}
 	ul.items-list li.item-card img {
 		position: relative;
+		width: 100%;
 		max-width: 50px;
 		height: auto;
 		aspect-ratio: 1/1;
