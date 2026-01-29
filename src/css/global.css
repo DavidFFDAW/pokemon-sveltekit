@@ -124,6 +124,15 @@ h2 {
     text-align: center;
 }
 
+body {
+	/* max-width: 1200px;
+	margin: 0 auto; */
+	transition: none;
+}
+body.pokemon-slug {
+	max-width: 100%;
+}
+
 button.unbutton {
     all: unset;
     cursor: pointer;

@@ -5,7 +5,11 @@
 	import '../css/layout.css';
 	import '../css/global.css';
 
-	export let data;
+	let { data, children } = $props();
+	
+	$effect(() => {
+		document.body.className = data.layout.route;
+	});
 </script>
 
 <MetaTags pageDatas={page.data} />
@@ -14,7 +18,7 @@
 	<Loader {navigating} />
 	{#key data.layout.canonical}
 		<div class="poke-real-content notransition">
-			<slot></slot>
+			{@render children()}
 		</div>
 	{/key}
 </main>

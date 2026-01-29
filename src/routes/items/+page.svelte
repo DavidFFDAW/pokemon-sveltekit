@@ -41,22 +41,43 @@
 </section>
 
 <style>
+	:root {
+		--grid-items-width: 180px;
+	}
+	.page-header {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		max-width: 100dvw;
+		background-color: var(--red);
+		padding: 10px 20px;
+		min-height: 60px;
+		box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+		z-index: 10;
+	}
 	.pokemon-items-page {
 		padding: 20px;
 		max-width: 1200px;
 		margin: 0 auto;
+		margin-top: 60px;
 	}
 	ul.items-list {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 20px;
+		grid-template-columns: repeat(auto-fit, minmax(var(--grid-items-width), 1fr));
 		list-style: none;
 		padding: 0;
+		margin: 15px 0;
+		gap: 10px;
 	}
 
 	ul.items-list li.item-card {
 		height: 100%;
-		min-height: 180px;
+		min-height: var(--grid-items-width);
 		text-align: center;
 		border: 1px solid var(--red);
 		border-radius: 8px;
