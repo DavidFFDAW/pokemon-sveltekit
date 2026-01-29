@@ -1,0 +1,77 @@
+{
+    "monster": {
+        "id": 1,
+        "name": "monster",
+        "es_name": "Monstruo"
+    },
+    "water1": {
+        "id": 2,
+        "name": "water1",
+        "es_name": "Agua 1"
+    },
+    "bug": {
+        "id": 3,
+        "name": "bug",
+        "es_name": "Bicho"
+    },
+    "flying": {
+        "id": 4,
+        "name": "flying",
+        "es_name": "Volador"
+    },
+    "ground": {
+        "id": 5,
+        "name": "ground",
+        "es_name": "Campo"
+    },
+    "fairy": {
+        "id": 6,
+        "name": "fairy",
+        "es_name": "Hada"
+    },
+    "plant": {
+        "id": 7,
+        "name": "plant",
+        "es_name": "Planta"
+    },
+    "humanshape": {
+        "id": 8,
+        "name": "humanshape",
+        "es_name": "Humanoide"
+    },
+    "water3": {
+        "id": 9,
+        "name": "water3",
+        "es_name": "Agua 3"
+    },
+    "mineral": {
+        "id": 10,
+        "name": "mineral",
+        "es_name": "Mineral"
+    },
+    "indeterminate": {
+        "id": 11,
+        "name": "indeterminate",
+        "es_name": "Amorfo"
+    },
+    "water2": {
+        "id": 12,
+        "name": "water2",
+        "es_name": "Agua 2"
+    },
+    "ditto": {
+        "id": 13,
+        "name": "ditto",
+        "es_name": "Ditto"
+    },
+    "dragon": {
+        "id": 14,
+        "name": "dragon",
+        "es_name": "Dragón"
+    },
+    "no-eggs": {
+        "id": 15,
+        "name": "no-eggs",
+        "es_name": "Desconocido"
+    }
+}

@@ -11,8 +11,9 @@
 		<ul class="egg-group-list">
 			{#each data.eggGroups as group}
 				<li class="egg-group-list-item">
-					<a href={`/pokemon/egg-group/${group.name}`} class="egg-group-list-link">
-						{group.name}
+					<a href={`/pokemon/egg-group/${group.id}`} class="egg-group-list-link">
+						<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/egg.png" alt={`Ícono del grupo huevo ${group.name}`} loading="lazy" />
+						<span>{group.es_name}</span>
 					</a>
 				</li>
 			{/each}
