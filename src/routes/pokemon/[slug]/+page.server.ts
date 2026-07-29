@@ -1,3 +1,4 @@
+import eggGroups from '$lib/data/egg-groups.json';
 import { PokeTypes } from '$lib/constant/types.js';
 import { getShinyProbability } from '$lib/utils/general.utils.js';
 import { getParsedPokemonMovePool } from '$lib/utils/moves.utils.js';
@@ -68,12 +69,24 @@ export const load = async ({ params }) => {
 		};
 	}) as PokeAbility[];
 
+	const egg_groups = specie.egg_groups.map((group: any) => {
+		if (!(group.name in eggGroups)) return null;
+		const foundGroup = (eggGroups as any)[group.name] as { id: number; name: string; es_name: string };
+
+		return {
+			id: foundGroup.id,
+			name: foundGroup.name,
+			es_name: foundGroup.es_name,
+		};
+	});
+
 	return {
 		stats,
 		labels,
 		genus,
 		specie,
 		varieties,
+		egg_groups: egg_groups.filter((g: any) => g !== null),
 		abilities: pAbilities,
 		pokemon: pokemonData,
 		shiny: getShinyProbability(),

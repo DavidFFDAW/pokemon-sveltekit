@@ -37,7 +37,7 @@
 
 <div
 	class="pokemon-wrapper pokemon-single-page pokemon-page type-{data.types[0].slug} light-theme"
-	class:shiny={shiny}
+	class:shiny
 	class:legendary={data.specie.is_legendary}
 	class:mythical={data.specie.is_mythical}
 	class:ultra-beast={data.specie.is_ultra_beast}
@@ -56,12 +56,7 @@
 
 	{#if data.pokemon}
 		<div class="pokemon-datas-wrapper">
-			<button
-				type="button"
-				class="shiny-button"
-				class:shiny={shiny}
-				onclick={toggleShiny}
-			>
+			<button type="button" class="shiny-button" class:shiny onclick={toggleShiny}>
 				<span>✨</span>
 			</button>
 
@@ -111,11 +106,7 @@
 
 				<div class="pokemon-abilities flex column gap-small">
 					{#each data.abilities as ability}
-						<PokeAbility
-							title={ability.name}
-							effect={ability.effect}
-							hidden={ability.is_hidden}
-						/>
+						<PokeAbility title={ability.name} effect={ability.effect} hidden={ability.is_hidden} />
 					{/each}
 				</div>
 			</section>
@@ -124,9 +115,15 @@
 				<h2>Grupos huevo</h2>
 
 				<div class="flex gap-5">
-					{#each data.specie.egg_groups as group}
-						<a href="/pokemon/egg-group/{group.name}" class="egg-group-item badge pointer">
-							{group.name}
+					{#each data.egg_groups as group}
+						<a href="/pokemon/egg-group/{group.id}" class="egg-group-item badge pointer">
+							<img
+								src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/egg.png"
+								alt={`Ícono del grupo huevo ${group.name}`}
+								loading="lazy"
+								width="30"
+							/>
+							<span>{group.es_name}</span>
 						</a>
 					{/each}
 				</div>
@@ -210,7 +207,7 @@
 
 			<section class="poke-section">
 				<h2>Movimientos</h2>
-				
+
 				<MoveVisor parsed_moves={data.parsed_moves} />
 			</section>
 
@@ -234,6 +231,14 @@
 </div>
 
 <style>
+	.egg-group-item {
+		background-color: #fff;
+		border: 1px solid #ddd;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+		display: flex;
+		align-items: center;
+		gap: 6px;
+	}
 	.pokemon-evolutions.flex.column {
 		width: 100%;
 		display: flex;

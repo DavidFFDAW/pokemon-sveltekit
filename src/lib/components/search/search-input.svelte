@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	let filtered: any = [];
 	import pokemons from '$lib/data/pokemon.json';
 
@@ -13,6 +14,13 @@
 
 <form action="/pokemon/list" method="get">
 	<div class="search-input-container form-item">
+		{#if page.route.id !== '/'}
+			<a href="/" class="btn" aria-label="Go to homepage" title="Go to homepage">
+				<i class="bi bi-house-door-fill"></i>
+				<span class="text">Inicio</span>
+			</a>
+		{/if}
+
 		<label
 			class="input-with-button"
 			aria-label="Search Pokémon"
