@@ -24,6 +24,9 @@ export const ApiPokemon = {
 	},
     getTypeBySlug: async (slug: string) => {
         return HttpService.get<ApiTypeResponse>(`${POKEAPI}type/${slug}`);
+    },
+    getApiData: async <T>(endpoint: string, isFullURL = false) => {
+        return HttpService.get<T>(isFullURL ? endpoint : `${POKEAPI}${endpoint}`);
     }
 }
 export default ApiPokemon

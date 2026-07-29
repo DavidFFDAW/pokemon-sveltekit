@@ -16,6 +16,12 @@ export const LocalPokemon = {
     getAllPokemons: () => {
         return pokemons.map(p => ({ ...p, is_shiny: getShinyProbability() }));
     },
+    getPokemonMap: () => {
+        return pokemons.reduce((map, p) => {
+            map[p.name] = { ...p, is_shiny: getShinyProbability() };
+            return map;
+        }, {} as Record<string, LocalPokemonInterface>);
+    },
     getRandomPokemon: () => {
         const randomIndex = Math.floor(Math.random() * pokemons.length);
         const is_shiny = getShinyProbability();

@@ -5,15 +5,17 @@ import { catchError } from '$lib/utils/general.utils';
 import { redirect } from '@sveltejs/kit';
 
 export async function load() {
-    const localPokemons = LocalPokemon.getAllPokemons();
+    const localPokemons = LocalPokemon.getPokemonMap();
     const [pokedex, error] = await catchError(ApiPokemon.getPokedexByRegion('galar'));
     if (error) return redirect(307, '/pokemon/list');
 
     const pokedexPokemonNames = pokedex.data.pokemon_entries.map((entry: any) => entry.pokemon_species.name);
-    const pokemons = localPokemons.filter(p => pokedexPokemonNames.includes(p.name));
+    const pokemons = pokedexPokemonNames.map((name: string) => localPokemons[name]).filter(Boolean);
 
 	return {
-		pokemons: pokemons,
+        pokemons: pokemons,
+        pokedexPokemonNames: pokedexPokemonNames,
+        localPokemons: localPokemons,
         metas: {
             title: `Galar - ${pokemon.length} Pokémon`,
             description: `Consulta la Pokédex de la región de Galar con ${pokemon.length} Pokémon.`,

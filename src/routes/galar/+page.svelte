@@ -2,18 +2,20 @@
 	import PokeCard from '$lib/components/pokemon/poke-card.svelte';
 	import PokemonTypeFilters from '$lib/components/pokemon/pokemon-type-filters.svelte';
 	// import PokedexByTypeVisualizer from '$lib/pokedex-by-type-visualizer.svelte';
-	let currentType: string = 'all';
-	export let data;
+	let { data } = $props();
+	let currentType: string = $state('all');
 
-	$: filtered = data.pokemons.filter((p) =>
-		currentType === 'all' ? true : p.types.map((t) => t.slug).includes(currentType)
-	);
+	let filtered = $derived(data.pokemons.filter((p: any) =>
+		currentType === 'all' ? true : p.types.map((t: any) => t.slug).includes(currentType)
+	));
+
+    $inspect(filtered);
 </script>
 
 <!-- <PokedexByTypeVisualizer pokedex={data.pokemons} /> -->
 <section class="page-galar-dex">
 	<header class="page-header">
-		<h1>Pokedex de Galar</h1>
+		<h1 class="violet uppercase">Pokedex de Galar</h1>
 	</header>
 
 	<PokemonTypeFilters bind:currentType />
