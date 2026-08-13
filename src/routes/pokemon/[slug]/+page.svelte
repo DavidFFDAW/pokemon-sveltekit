@@ -205,12 +205,6 @@
 				</div>
 			</section>
 
-			<section class="poke-section">
-				<h2>Movimientos</h2>
-
-				<MoveVisor parsed_moves={data.parsed_moves} />
-			</section>
-
 			<section class="pokemon-stats-container poke-section" id="pokemon-stats-section">
 				<h2>Estadísticas</h2>
 				<PokeStats stats={data.stats} />
